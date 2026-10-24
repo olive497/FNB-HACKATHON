@@ -1,4 +1,4 @@
-import { Router } from "express";
+﻿import { Router } from "express";
 import bcrypt from "bcryptjs";
 import crypto from "node:crypto";
 import { z } from "zod";
@@ -59,6 +59,27 @@ auth.post("/demo", limit(), async (_req, res) => {
 });
 
 auth.get("/me", requireAuth, (req, res) => res.json({ user: publicUser(req.user) }));
+
+// POPIA right-to-access: full export of everything stored for this user.
+// Excludes scam message text, SafeExit entries and Safety Circle (never stored).
+auth.get("/me/export", requireAuth, (req, res) => {
+  const u = req.user;
+  res.set("Content-Type", "application/json");
+  res.set("Content-Disposition", `attachment; filename="safebank-export-${u.id}.json"`);
+  res.json({
+    exportedAt: new Date().toISOString(),
+    user: publicUser(u),
+    income: u.income ?? [],
+    expenses: u.expenses ?? [],
+    goals: u.goals ?? [],
+    debts: u.debts ?? [],
+    recoveryGoals: u.recoveryGoals ?? [],
+    budgetLimits: u.budgetLimits ?? {},
+    lessonBest: u.lessonBest ?? {},
+    scamQuizBest: u.scamQuizBest ?? null,
+    createdAt: u.createdAt,
+  });
+});
 
 auth.patch(
   "/me",

@@ -1,4 +1,4 @@
-import test from "node:test";
+﻿import test from "node:test";
 import assert from "node:assert/strict";
 import os from "node:os";
 import path from "node:path";
@@ -96,4 +96,17 @@ test("scamshield rate limit blocks after 30 requests", async () => {
     if (lastStatus === 429) break;
   }
   assert.equal(lastStatus, 429);
+});
+
+
+test("auth export returns full user data without sensitive fields", async () => {
+  const t = (await call("POST", "/auth/demo")).body.token;
+  const r = await call("GET", "/auth/me/export", null, t);
+  assert.equal(r.status, 200);
+  assert.equal(r.body.user.email, "thando.demo@safebank.co.za");
+  assert.equal(r.body.user.passwordHash, undefined);
+  assert.ok(Array.isArray(r.body.income));
+  assert.ok(Array.isArray(r.body.expenses));
+  assert.ok(Array.isArray(r.body.goals));
+  assert.equal(typeof r.body.exportedAt, "string");
 });
