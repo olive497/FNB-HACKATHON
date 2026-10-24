@@ -16,34 +16,38 @@
       "region": "Johannesburg, Gauteng",
       "contact": "0800 000 001 (sample)",
       "hours": "Mon–Fri 08:00–16:00",
-      "verified": "Sample entry — not verified"
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
     },
     {
       "id": "s2",
-      "name": "Sample GBV Support Command Centre",
+      "name": "GBV Command Centre (national)",
       "category": "GBV support",
       "region": "National",
-      "contact": "0800 000 002 (sample)",
+      "contact": "0800 428 428",
       "hours": "24 hours",
-      "verified": "Sample entry — not verified"
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
     },
     {
       "id": "s3",
-      "name": "Sample Legal Aid Advice Office",
+      "name": "Legal Aid South Africa",
       "category": "Legal assistance",
-      "region": "Durban, KwaZulu-Natal",
-      "contact": "0800 000 003 (sample)",
-      "hours": "Mon–Fri 09:00–17:00",
-      "verified": "Sample entry — not verified"
+      "region": "National",
+      "contact": "0800 110 110",
+      "hours": "Mon-Fri 08:00-16:30",
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
     },
     {
       "id": "s4",
-      "name": "Sample Counselling Helpline",
+      "name": "SADAG Suicide Crisis Line",
       "category": "Counselling",
       "region": "National",
-      "contact": "0800 000 004 (sample)",
-      "hours": "Daily 07:00–22:00",
-      "verified": "Sample entry — not verified"
+      "contact": "0800 567 567",
+      "hours": "24 hours",
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
     },
     {
       "id": "s5",
@@ -52,7 +56,8 @@
       "region": "Cape Town, Western Cape",
       "contact": "0800 000 005 (sample)",
       "hours": "Mon–Fri 08:30–16:30",
-      "verified": "Sample entry — not verified"
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
     },
     {
       "id": "s6",
@@ -61,7 +66,8 @@
       "region": "Polokwane, Limpopo",
       "contact": "0800 000 006 (sample)",
       "hours": "Mon–Fri 08:00–17:00",
-      "verified": "Sample entry — not verified"
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
     },
     {
       "id": "s7",
@@ -70,16 +76,18 @@
       "region": "Gqeberha, Eastern Cape",
       "contact": "0800 000 007 (sample)",
       "hours": "Weekdays 09:00–15:00",
-      "verified": "Sample entry — not verified"
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
     },
     {
       "id": "s8",
-      "name": "Sample Debt Counselling Helpline",
+      "name": "National Debt Mediation Association",
       "category": "Financial guidance",
       "region": "National",
-      "contact": "0800 000 008 (sample)",
-      "hours": "Mon–Sat 08:00–18:00",
-      "verified": "Sample entry — not verified"
+      "contact": "0861 627 627",
+      "hours": "Mon-Fri 08:00-16:30",
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
     }
   ],
   "recoveryResources": [
