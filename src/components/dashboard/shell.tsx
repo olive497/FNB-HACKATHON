@@ -89,7 +89,10 @@ function NotificationBell() {
         className="relative cursor-pointer rounded-xl p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
       >
         <Bell className="h-5 w-5" />
-        <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" aria-hidden />
+        <span
+          className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive"
+          aria-hidden
+        />
       </button>
       {open && (
         <div className="absolute right-0 z-30 mt-2 w-72 rounded-2xl border border-border bg-card p-2 shadow-lg">
@@ -104,7 +107,9 @@ function NotificationBell() {
               <p className="text-xs text-muted-foreground">{n.b}</p>
             </div>
           ))}
-          <p className="px-2 pb-1 pt-2 text-[11px] text-muted-foreground">Simulated notifications for the prototype.</p>
+          <p className="px-2 pb-1 pt-2 text-[11px] text-muted-foreground">
+            Simulated notifications for the prototype.
+          </p>
         </div>
       )}
     </div>
@@ -198,7 +203,9 @@ function Sidebar({ collapsed }: { collapsed: boolean }) {
       </nav>
       {!collapsed && (
         <div className="border-t border-sidebar-border px-4 py-3">
-          <Badge tone="gold" className="text-[10px]">FNB APP OF THE YEAR</Badge>
+          <Badge tone="gold" className="text-[10px]">
+            FNB APP OF THE YEAR
+          </Badge>
           <p className="mt-2 text-xs text-sidebar-foreground/60">
             Demo prototype · {user?.name ?? "Demo"} · Simulated data
           </p>
@@ -223,7 +230,11 @@ function MoreSheet({ open, onClose }: { open: boolean; onClose: () => void }) {
       >
         <div className="mb-3 flex items-center justify-between">
           <p className="font-bold">More</p>
-          <button onClick={onClose} aria-label="Close menu" className="cursor-pointer rounded-lg p-1 hover:bg-muted">
+          <button
+            onClick={onClose}
+            aria-label="Close menu"
+            className="cursor-pointer rounded-lg p-1 hover:bg-muted"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
@@ -311,7 +322,12 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
         </div>
       </header>
 
-      <main className={cn("px-4 pb-28 pt-4 lg:px-8 lg:pb-10", collapsed ? "lg:ml-[76px] lg:pt-6" : "lg:ml-64 lg:pt-6")}>
+      <main
+        className={cn(
+          "px-4 pb-28 pt-4 lg:px-8 lg:pb-10",
+          collapsed ? "lg:ml-[76px] lg:pt-6" : "lg:ml-64 lg:pt-6",
+        )}
+      >
         <div className="mx-auto max-w-6xl">
           {/* Greeting repeated on mobile */}
           <div className="mb-4 lg:hidden">
@@ -346,7 +362,10 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
               </Link>
             );
           })}
-          <button onClick={() => setMoreOpen(true)} className="flex cursor-pointer flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold text-muted-foreground">
+          <button
+            onClick={() => setMoreOpen(true)}
+            className="flex cursor-pointer flex-col items-center gap-0.5 py-2.5 text-[10px] font-semibold text-muted-foreground"
+          >
             <Settings className="h-5 w-5" />
             More
           </button>

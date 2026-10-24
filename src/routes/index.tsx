@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+﻿import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -88,8 +88,15 @@ const PILLARS = [
 
 function SproutIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    // eslint-disable-next-line react/no-unknown-property
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M7 20h10" />
       <path d="M12 20v-9" />
       <path d="M12 11c0-3.5 2.5-6 6-6 0 3.5-2.5 6-6 6z" />
@@ -122,10 +129,22 @@ const BENEFITS = [
 ];
 
 const STEPS = [
-  { title: "Create your financial profile", body: "Tell SafeBank how you earn — fixed salary, weekly, freelance or irregular — and what you want to achieve." },
-  { title: "Track your income and expenses", body: "Log money in and out in seconds. SmartBudget recalculates everything instantly." },
-  { title: "Build flexible savings goals", body: "Set targets in SafePocket and contribute any amount, any time. Watch progress grow." },
-  { title: "Learn, protect and strengthen", body: "Take short MoneyWise lessons, check suspicious messages and plan for a safer future." },
+  {
+    title: "Create your financial profile",
+    body: "Tell SafeBank how you earn — fixed salary, weekly, freelance or irregular — and what you want to achieve.",
+  },
+  {
+    title: "Track your income and expenses",
+    body: "Log money in and out in seconds. SmartBudget recalculates everything instantly.",
+  },
+  {
+    title: "Build flexible savings goals",
+    body: "Set targets in SafePocket and contribute any amount, any time. Watch progress grow.",
+  },
+  {
+    title: "Learn, protect and strengthen",
+    body: "Take short MoneyWise lessons, check suspicious messages and plan for a safer future.",
+  },
 ];
 
 const INCLUSION = [
@@ -139,7 +158,15 @@ const INCLUSION = [
 
 function LaptopIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <path d="M3 6a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v9H3z" />
       <path d="M2 19h20" />
     </svg>
@@ -148,7 +175,15 @@ function LaptopIcon(props: React.SVGProps<SVGSVGElement>) {
 
 function ClockIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      {...props}
+    >
       <circle cx="12" cy="12" r="9" />
       <path d="M12 7v5l3 2" />
     </svg>
@@ -209,12 +244,16 @@ function HeroMock() {
         </div>
         <div className="mt-3 flex h-24 items-end gap-2 rounded-xl bg-muted p-3">
           {[45, 70, 52, 85, 60, 95, 74].map((h, i) => (
-            <div key={i} className="flex-1 rounded-t-md bg-primary/80" style={{ height: `${h}%` }} />
+            <div
+              key={i}
+              className="flex-1 rounded-t-md bg-primary/80"
+              style={{ height: `${h}%` }}
+            />
           ))}
         </div>
       </div>
       <div className="absolute -bottom-3 -right-3 rounded-2xl bg-accent px-3 py-2 text-xs font-bold text-accent-foreground shadow-lg">
-        Scam risk: HIGH ⚠
+        Scam risk: HIGH ⚠️
       </div>
     </div>
   );
@@ -230,7 +269,9 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         aria-expanded={open}
       >
         <span className="font-semibold">{q}</span>
-        <ChevronDown className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
+        <ChevronDown
+          className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
+        />
       </button>
       {open && <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground">{a}</p>}
     </div>
@@ -243,7 +284,9 @@ function Logo({ light = false }: { light?: boolean }) {
       <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
         <Landmark className="h-5 w-5" />
       </span>
-      <span className={`text-xl font-extrabold tracking-tight ${light ? "text-white" : "text-foreground"}`}>
+      <span
+        className={`text-xl font-extrabold tracking-tight ${light ? "text-white" : "text-foreground"}`}
+      >
         Safe<span className="text-primary">Bank</span>
       </span>
     </span>
@@ -268,33 +311,54 @@ function Landing() {
           <Logo />
           <nav className="hidden items-center gap-6 md:flex">
             {NAV.map((n) => (
-              <a key={n.label} href={n.href} className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+              <a
+                key={n.label}
+                href={n.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              >
                 {n.label}
               </a>
             ))}
           </nav>
           <div className="hidden items-center gap-2 md:flex">
             <Link to="/login">
-              <Button variant="ghost" size="sm">Log In</Button>
+              <Button variant="ghost" size="sm">
+                Log In
+              </Button>
             </Link>
             <Link to="/signup">
               <Button size="sm">Get Started</Button>
             </Link>
           </div>
-          <button className="md:hidden" aria-label="Toggle menu" onClick={() => setMenuOpen(!menuOpen)}>
+          <button
+            className="md:hidden"
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
         </div>
         {menuOpen && (
           <div className="border-t border-border bg-background px-4 py-3 md:hidden">
             {NAV.map((n) => (
-              <a key={n.label} href={n.href} onClick={() => setMenuOpen(false)} className="block py-2 font-medium">
+              <a
+                key={n.label}
+                href={n.href}
+                onClick={() => setMenuOpen(false)}
+                className="block py-2 font-medium"
+              >
                 {n.label}
               </a>
             ))}
             <div className="mt-2 flex gap-2">
-              <Link to="/login" className="flex-1"><Button variant="outline" className="w-full">Log In</Button></Link>
-              <Link to="/signup" className="flex-1"><Button className="w-full">Get Started</Button></Link>
+              <Link to="/login" className="flex-1">
+                <Button variant="outline" className="w-full">
+                  Log In
+                </Button>
+              </Link>
+              <Link to="/signup" className="flex-1">
+                <Button className="w-full">Get Started</Button>
+              </Link>
             </div>
           </div>
         )}
@@ -321,7 +385,11 @@ function Landing() {
                 </Button>
               </Link>
               <a href="#features">
-                <Button size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/40 bg-transparent text-white hover:bg-white/10"
+                >
                   Explore Features
                 </Button>
               </a>
@@ -337,7 +405,8 @@ function Landing() {
           <h2 className="text-3xl font-extrabold tracking-tight">Why SafeBank?</h2>
           <p className="mt-3 text-muted-foreground">
             Financial management should be accessible to everyone — including people with irregular
-            incomes, students, informal workers and individuals experiencing financial vulnerability.
+            incomes, students, informal workers and individuals experiencing financial
+            vulnerability.
           </p>
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -359,7 +428,8 @@ function Landing() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-extrabold tracking-tight">The Four Pillars of SafeBank</h2>
             <p className="mt-3 text-muted-foreground">
-              Every feature in SafeBank supports one of four promises that stay visible across the whole product.
+              Every feature in SafeBank supports one of four promises that stay visible across the
+              whole product.
             </p>
           </div>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -373,7 +443,8 @@ function Landing() {
                     <span className="text-4xl font-extrabold text-border">0{i + 1}</span>
                   </div>
                   <h3 className="flex items-center gap-1.5 font-extrabold tracking-wide">
-                    {p.title} <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
+                    {p.title}{" "}
+                    <ArrowRight className="h-4 w-4 text-primary transition-transform group-hover:translate-x-1" />
                   </h3>
                   <p className="mt-1.5 text-sm text-muted-foreground">{p.body}</p>
                 </div>
@@ -406,15 +477,20 @@ function Landing() {
         <div className="mx-auto max-w-6xl px-4">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <h2 className="text-3xl font-extrabold tracking-tight">Designed for Financial Inclusion</h2>
+              <h2 className="text-3xl font-extrabold tracking-tight">
+                Designed for Financial Inclusion
+              </h2>
               <p className="mt-3 text-muted-foreground">
                 SafeBank is built for the millions of South Africans the traditional financial
-                system struggles to serve — with simple language, flexible budgeting and tools
-                that work even when income doesn't arrive on the same day each month.
+                system struggles to serve — with simple language, flexible budgeting and tools that
+                work even when income doesn't arrive on the same day each month.
               </p>
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
                 {INCLUSION.map((item) => (
-                  <div key={item.label} className="flex items-center gap-2 rounded-xl bg-background p-3 text-sm font-medium">
+                  <div
+                    key={item.label}
+                    className="flex items-center gap-2 rounded-xl bg-background p-3 text-sm font-medium"
+                  >
                     <item.icon className="h-5 w-5 shrink-0 text-primary" />
                     {item.label}
                   </div>
@@ -422,9 +498,12 @@ function Landing() {
               </div>
             </div>
             <div className="card-surface">
-              <h3 className="flex items-center gap-2 font-bold"><Lock className="h-5 w-5 text-primary" /> Privacy and Trust</h3>
+              <h3 className="flex items-center gap-2 font-bold">
+                <Lock className="h-5 w-5 text-primary" /> Privacy and Trust
+              </h3>
               <p className="mt-2 text-sm text-muted-foreground">
-                SafeBank is a financial planning and education platform, not a bank. Your control comes first:
+                SafeBank is a financial planning and education platform, not a bank. Your control
+                comes first:
               </p>
               <ul className="mt-4 space-y-2.5 text-sm">
                 {[
@@ -447,28 +526,46 @@ function Landing() {
 
       {/* FAQs */}
       <section id="faqs" className="mx-auto max-w-3xl px-4 py-16 md:py-20">
-        <h2 className="text-center text-3xl font-extrabold tracking-tight">Frequently Asked Questions</h2>
+        <h2 className="text-center text-3xl font-extrabold tracking-tight">
+          Frequently Asked Questions
+        </h2>
         <div className="mt-8 space-y-3">
-          {FAQS.map((f) => <FaqItem key={f.q} {...f} />)}
+          {FAQS.map((f) => (
+            <FaqItem key={f.q} {...f} />
+          ))}
         </div>
       </section>
 
       {/* CTA band */}
       <section className="hero-mesh px-4 py-16 text-center text-white">
         <div className="mx-auto max-w-2xl">
-          <h2 className="text-3xl font-extrabold tracking-tight">Your Money. Your Safety. Your Future.</h2>
-          <p className="mt-3 text-white/80">Explore the full SafeBank experience with the demo account — no sign-up needed.</p>
+          <h2 className="text-3xl font-extrabold tracking-tight">
+            Your Money. Your Safety. Your Future.
+          </h2>
+          <p className="mt-3 text-white/80">
+            Explore the full SafeBank experience with the demo account — no sign-up needed.
+          </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button size="lg" className="bg-white text-brand hover:bg-white/90" onClick={goToDashboard}>
+            <Button
+              size="lg"
+              className="bg-white text-brand hover:bg-white/90"
+              onClick={goToDashboard}
+            >
               <UserRound className="h-5 w-5" /> Try Demo Account
             </Button>
             <Link to="/signup">
-              <Button size="lg" variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/40 bg-transparent text-white hover:bg-white/10"
+              >
                 Create Free Profile
               </Button>
             </Link>
           </div>
-          <p className="mt-4 text-xs text-white/60">Demo prototype — all financial information shown is simulated.</p>
+          <p className="mt-4 text-xs text-white/60">
+            Demo prototype — all financial information shown is simulated.
+          </p>
         </div>
       </section>
 
@@ -483,23 +580,43 @@ function Landing() {
           <div className="text-sm">
             <p className="mb-3 font-bold">Explore</p>
             <ul className="space-y-2 text-white/70">
-              <li><a href="#about" className="hover:text-white">About</a></li>
-              <li><a href="#features" className="hover:text-white">Features</a></li>
-              <li><a href="#faqs" className="hover:text-white">Privacy</a></li>
-              <li><a href="#faqs" className="hover:text-white">Contact</a></li>
+              <li>
+                <a href="#about" className="hover:text-white">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#features" className="hover:text-white">
+                  Features
+                </a>
+              </li>
+              <li>
+                <a href="#faqs" className="hover:text-white">
+                  Privacy
+                </a>
+              </li>
+              <li>
+                <a href="#faqs" className="hover:text-white">
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
           <div className="text-sm">
             <p className="mb-3 font-bold">Hackathon</p>
             <p className="text-white/70">
-              Built for the <span className="font-semibold text-white">FNB App of the Year Hackathon</span>
-              <br />Financial Inclusion and Money Management category.
+              Built for the{" "}
+              <span className="font-semibold text-white">FNB App of the Year Hackathon</span>
+              <br />
+              Financial Inclusion and Money Management category.
             </p>
-            <p className="mt-3 text-xs text-white/50">Prototype only — no real banking, payments or data collection.</p>
+            <p className="mt-3 text-xs text-white/50">
+              Prototype only — no real banking, payments or data collection.
+            </p>
           </div>
         </div>
         <div className="mx-auto mt-8 max-w-6xl border-t border-white/10 px-4 pt-5 text-center text-xs text-white/50">
-          © 2026 Team Finovators · SafeBank demo · Simulated data throughout
+          Â© 2026 Team Finovators · SafeBank demo · Simulated data throughout
         </div>
       </footer>
     </div>

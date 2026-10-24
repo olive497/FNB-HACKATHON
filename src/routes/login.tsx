@@ -1,6 +1,15 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Eye, EyeOff, Landmark, LifeBuoy, ShieldCheck, Sprout, Wallet } from "lucide-react";
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Landmark,
+  LifeBuoy,
+  ShieldCheck,
+  Sprout,
+  Wallet,
+} from "lucide-react";
 import { Button, Input, Label, Badge } from "@/components/ui";
 import { useSafeBank } from "@/store/store";
 
@@ -8,7 +17,11 @@ export const Route = createFileRoute("/login")({
   head: () => ({
     meta: [
       { title: "Log In — SafeBank" },
-      { name: "description", content: "Sign in to the SafeBank demo, or explore instantly with the demo account. Prototype with simulated data." },
+      {
+        name: "description",
+        content:
+          "Sign in to the SafeBank demo, or explore instantly with the demo account. Prototype with simulated data.",
+      },
       { property: "og:title", content: "Log In — SafeBank" },
       { property: "og:description", content: "Sign in to the SafeBank demo by Team Finovators." },
       { property: "og:type", content: "website" },
@@ -111,7 +124,9 @@ function Login() {
                 onChange={(e) => setEmail(e.target.value)}
                 aria-invalid={!!errors.email}
               />
-              {errors.email && <p className="mt-1 text-xs font-medium text-destructive">{errors.email}</p>}
+              {errors.email && (
+                <p className="mt-1 text-xs font-medium text-destructive">{errors.email}</p>
+              )}
             </div>
             <div>
               <Label htmlFor="password">Password</Label>
@@ -134,10 +149,15 @@ function Login() {
                   {showPw ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
-              {errors.password && <p className="mt-1 text-xs font-medium text-destructive">{errors.password}</p>}
+              {errors.password && (
+                <p className="mt-1 text-xs font-medium text-destructive">{errors.password}</p>
+              )}
             </div>
             <div className="flex justify-end">
-              <Link to="/forgot-password" className="text-sm font-semibold text-primary hover:underline">
+              <Link
+                to="/forgot-password"
+                className="text-sm font-semibold text-primary hover:underline"
+              >
                 Forgot password?
               </Link>
             </div>
@@ -154,7 +174,8 @@ function Login() {
             Try Demo Account
           </Button>
           <p className="mt-2 text-center text-xs text-muted-foreground">
-            Explore instantly as <span className="font-semibold">Thando Mokoena</span> with simulated data.
+            Explore instantly as <span className="font-semibold">Thando Mokoena</span> with
+            simulated data.
           </p>
 
           <p className="mt-8 text-center text-sm text-muted-foreground">

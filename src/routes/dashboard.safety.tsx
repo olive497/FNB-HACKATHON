@@ -12,7 +12,17 @@ import {
   Trash2,
   UserPlus,
 } from "lucide-react";
-import { Badge, Button, Card, CardTitle, EmptyState, Input, Label, Modal, SectionTitle } from "@/components/ui";
+import {
+  Badge,
+  Button,
+  Card,
+  CardTitle,
+  EmptyState,
+  Input,
+  Label,
+  Modal,
+  SectionTitle,
+} from "@/components/ui";
 import { SAFETY_EXPENSE_ITEMS } from "@/lib/demo-data";
 import { formatZAR, parseAmount } from "@/lib/format";
 import { useSafeBank } from "@/store/store";
@@ -21,7 +31,11 @@ export const Route = createFileRoute("/dashboard/safety")({
   head: () => ({
     meta: [
       { title: "Financial Safety — SafeBank" },
-      { name: "description", content: "Private financial safety tools: education, essential-costs planning, trusted contacts and privacy controls. Nothing is saved or shared." },
+      {
+        name: "description",
+        content:
+          "Private financial safety tools: education, essential-costs planning, trusted contacts and privacy controls. Nothing is saved or shared.",
+      },
       { property: "og:title", content: "Financial Safety — SafeBank" },
       { property: "og:description", content: "Optional, confidential financial safety planning." },
       { property: "og:type", content: "website" },
@@ -48,7 +62,10 @@ function FinancialSafety() {
   const [contact, setContact] = useState({ name: "", relation: "" });
   const [contactError, setContactError] = useState("");
 
-  const safeExitTotal = SAFETY_EXPENSE_ITEMS.reduce((a, item) => a + (store.safeExit[item] ?? 0), 0);
+  const safeExitTotal = SAFETY_EXPENSE_ITEMS.reduce(
+    (a, item) => a + (store.safeExit[item] ?? 0),
+    0,
+  );
 
   const addContact = (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,7 +113,9 @@ function FinancialSafety() {
             key={key}
             onClick={() => setTab(key)}
             className={`flex shrink-0 cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
-              tab === key ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card hover:bg-muted"
+              tab === key
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-card hover:bg-muted"
             }`}
           >
             <Icon className="h-4 w-4" /> {label}
@@ -108,10 +127,30 @@ function FinancialSafety() {
         <div className="grid gap-4 sm:grid-cols-2">
           {(
             [
-              ["learn", BookOpen, "Understand Financial Abuse", "Learn what financial control can look like — and that it is never your fault."],
-              ["plan", Calculator, "Plan Essential Expenses", "Privately estimate what you would need to cover transport, food, accommodation and more."],
-              ["circle", UserPlus, "Find Trusted Support", "Keep a private list of sample trusted contacts and browse support organisations."],
-              ["privacy", Lock, "Review Privacy Settings", "Clear planning data, control notifications and understand what stays on your device."],
+              [
+                "learn",
+                BookOpen,
+                "Understand Financial Abuse",
+                "Learn what financial control can look like — and that it is never your fault.",
+              ],
+              [
+                "plan",
+                Calculator,
+                "Plan Essential Expenses",
+                "Privately estimate what you would need to cover transport, food, accommodation and more.",
+              ],
+              [
+                "circle",
+                UserPlus,
+                "Find Trusted Support",
+                "Keep a private list of sample trusted contacts and browse support organisations.",
+              ],
+              [
+                "privacy",
+                Lock,
+                "Review Privacy Settings",
+                "Clear planning data, control notifications and understand what stays on your device.",
+              ],
             ] as const
           ).map(([key, Icon, title, body]) => (
             <button key={key} onClick={() => setTab(key)} className="cursor-pointer text-left">
@@ -125,10 +164,18 @@ function FinancialSafety() {
             </button>
           ))}
           <Card className="sm:col-span-2 border-primary/25 bg-primary/5">
-            <CardTitle className="flex items-center gap-2"><Info className="h-4.5 w-4.5 text-primary" /> How SafeBank protects you here</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Info className="h-4.5 w-4.5 text-primary" /> How SafeBank protects you here
+            </CardTitle>
             <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
-              <li>• This section uses a neutral name — Financial Safety — and requires no disclosure of personal circumstances.</li>
-              <li>• Nothing you plan here is saved to your device, exported, or shared with anyone automatically.</li>
+              <li>
+                • This section uses a neutral name — Financial Safety — and requires no disclosure
+                of personal circumstances.
+              </li>
+              <li>
+                • Nothing you plan here is saved to your device, exported, or shared with anyone
+                automatically.
+              </li>
               <li>• Quick Exit above closes this section immediately.</li>
             </ul>
           </Card>
@@ -140,8 +187,9 @@ function FinancialSafety() {
           <Card>
             <CardTitle>What financial abuse can look like</CardTitle>
             <p className="mt-1 text-sm text-muted-foreground">
-              Financial abuse is a pattern of control over someone's money or ability to earn. It can happen to anyone,
-              in any kind of relationship. These are examples other people have described:
+              Financial abuse is a pattern of control over someone's money or ability to earn. It
+              can happen to anyone, in any kind of relationship. These are examples other people
+              have described:
             </p>
             <ul className="mt-3 space-y-2">
               {ABUSE_EXAMPLES.map((ex) => (
@@ -155,16 +203,31 @@ function FinancialSafety() {
           <Card>
             <CardTitle>A few things worth knowing</CardTitle>
             <ul className="mt-2 space-y-2 text-sm text-muted-foreground">
-              <li className="rounded-xl bg-primary/5 p-3">It is not your fault. Economic control is often created gradually and deliberately.</li>
-              <li className="rounded-xl bg-primary/5 p-3">Wanting financial independence is healthy and normal — small steps count: your own knowledge, your own plan, knowing what things cost.</li>
-              <li className="rounded-xl bg-primary/5 p-3">You control the pace. Everything in this section is optional, private and erasable.</li>
+              <li className="rounded-xl bg-primary/5 p-3">
+                It is not your fault. Economic control is often created gradually and deliberately.
+              </li>
+              <li className="rounded-xl bg-primary/5 p-3">
+                Wanting financial independence is healthy and normal — small steps count: your own
+                knowledge, your own plan, knowing what things cost.
+              </li>
+              <li className="rounded-xl bg-primary/5 p-3">
+                You control the pace. Everything in this section is optional, private and erasable.
+              </li>
             </ul>
             <p className="mt-3 text-xs text-muted-foreground">
-              SafeBank offers education and planning tools, not crisis services. If you are in danger, contact your local
-              emergency services. The Support Navigator lists sample categories of trusted organisations to explore.
+              SafeBank offers education and planning tools, not crisis services. If you are in
+              danger, contact your local emergency services. The Support Navigator lists sample
+              categories of trusted organisations to explore.
             </p>
           </Card>
-          <Button variant="outline" onClick={() => { setTab("plan"); }}>Next: Plan Essential Expenses</Button>
+          <Button
+            variant="outline"
+            onClick={() => {
+              setTab("plan");
+            }}
+          >
+            Next: Plan Essential Expenses
+          </Button>
         </div>
       )}
 
@@ -175,11 +238,15 @@ function FinancialSafety() {
             <CardTitle>SafeExit Calculator</CardTitle>
           </div>
           <p className="mt-1 text-sm text-muted-foreground">
-            Privately estimate essential living costs. Entries live only in this session — nothing is saved, exported or shared.
+            Privately estimate essential living costs. Entries live only in this session — nothing
+            is saved, exported or shared.
           </p>
           <div className="mt-4 space-y-2.5">
             {SAFETY_EXPENSE_ITEMS.map((item) => (
-              <div key={item} className="flex items-center justify-between gap-3 rounded-xl bg-muted px-3.5 py-2.5">
+              <div
+                key={item}
+                className="flex items-center justify-between gap-3 rounded-xl bg-muted px-3.5 py-2.5"
+              >
                 <span className="text-sm font-semibold">{item}</span>
                 <Input
                   aria-label={`Estimated monthly cost for ${item}`}
@@ -199,7 +266,9 @@ function FinancialSafety() {
             <div>
               <p className="text-sm font-semibold text-primary">Estimated total</p>
               <p className="text-2xl font-extrabold text-primary">{formatZAR(safeExitTotal)}</p>
-              <p className="text-xs text-muted-foreground">Illustrative estimate only — real costs vary.</p>
+              <p className="text-xs text-muted-foreground">
+                Illustrative estimate only — real costs vary.
+              </p>
             </div>
             <Button variant="destructive" onClick={() => store.clearSafeExit()}>
               <Trash2 className="h-4 w-4" /> Clear All Entries
@@ -214,24 +283,43 @@ function FinancialSafety() {
             <div className="flex items-center justify-between gap-3">
               <div>
                 <CardTitle>Safety Circle</CardTitle>
-                <p className="text-sm text-muted-foreground">A private list of people you could turn to.</p>
+                <p className="text-sm text-muted-foreground">
+                  A private list of people you could turn to.
+                </p>
               </div>
-              <Button size="sm" onClick={() => { setContactOpen(true); setContactError(""); }}>
+              <Button
+                size="sm"
+                onClick={() => {
+                  setContactOpen(true);
+                  setContactError("");
+                }}
+              >
                 <Plus className="h-4 w-4" /> Add Contact
               </Button>
             </div>
             <div className="mt-4">
               {store.circle.length === 0 ? (
-                <EmptyState icon={<UserPlus className="h-8 w-8" />} title="No sample contacts yet" body="Add sample trusted contacts to see how your Safety Circle would look. Nothing is contacted or shared." />
+                <EmptyState
+                  icon={<UserPlus className="h-8 w-8" />}
+                  title="No sample contacts yet"
+                  body="Add sample trusted contacts to see how your Safety Circle would look. Nothing is contacted or shared."
+                />
               ) : (
                 <div className="space-y-2">
                   {store.circle.map((c) => (
-                    <div key={c.id} className="flex items-center justify-between gap-3 rounded-xl bg-muted px-3.5 py-2.5">
+                    <div
+                      key={c.id}
+                      className="flex items-center justify-between gap-3 rounded-xl bg-muted px-3.5 py-2.5"
+                    >
                       <div>
                         <p className="text-sm font-semibold">{c.name}</p>
                         <p className="text-xs text-muted-foreground">{c.relation}</p>
                       </div>
-                      <button onClick={() => store.removeContact(c.id)} aria-label={`Remove ${c.name}`} className="cursor-pointer rounded-lg p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive">
+                      <button
+                        onClick={() => store.removeContact(c.id)}
+                        aria-label={`Remove ${c.name}`}
+                        className="cursor-pointer rounded-lg p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive"
+                      >
                         <Trash2 className="h-4 w-4" />
                       </button>
                     </div>
@@ -240,13 +328,24 @@ function FinancialSafety() {
               )}
             </div>
             <p className="mt-4 rounded-xl bg-accent/10 p-3 text-xs text-accent-foreground">
-              Prototype only: SafeBank does not send real messages, share your location, or share plans or financial information with anyone.
+              Prototype only: SafeBank does not send real messages, share your location, or share
+              plans or financial information with anyone.
             </p>
           </Card>
           <Card>
-            <CardTitle className="flex items-center gap-2"><HeartHandshake className="h-4.5 w-4.5 text-primary" /> Trusted support categories</CardTitle>
-            <p className="mt-1 text-sm text-muted-foreground">Browse clearly labelled sample organisations in the Support Navigator.</p>
-            <Button className="mt-3" variant="outline" onClick={() => { void navigate({ to: "/dashboard/support" }); }}>
+            <CardTitle className="flex items-center gap-2">
+              <HeartHandshake className="h-4.5 w-4.5 text-primary" /> Trusted support categories
+            </CardTitle>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Browse clearly labelled sample organisations in the Support Navigator.
+            </p>
+            <Button
+              className="mt-3"
+              variant="outline"
+              onClick={() => {
+                void navigate({ to: "/dashboard/support" });
+              }}
+            >
               Open Support Navigator
             </Button>
           </Card>
@@ -259,12 +358,21 @@ function FinancialSafety() {
             <CardTitle>Privacy Controls</CardTitle>
             <ul className="mt-3 space-y-2.5 text-sm">
               <li className="flex items-start gap-2 rounded-xl bg-muted p-3">
-                <Badge tone="positive" className="mt-0.5">On</Badge>
-                <span>No sensitive notifications — this section never generates alerts or notifications.</span>
+                <Badge tone="positive" className="mt-0.5">
+                  On
+                </Badge>
+                <span>
+                  No sensitive notifications — this section never generates alerts or notifications.
+                </span>
               </li>
               <li className="flex items-start gap-2 rounded-xl bg-muted p-3">
-                <Badge tone="positive" className="mt-0.5">On</Badge>
-                <span>Planning data is memory-only — it disappears when you leave, log out, or clear it below.</span>
+                <Badge tone="positive" className="mt-0.5">
+                  On
+                </Badge>
+                <span>
+                  Planning data is memory-only — it disappears when you leave, log out, or clear it
+                  below.
+                </span>
               </li>
             </ul>
             <div className="mt-4 flex flex-wrap gap-2">
@@ -279,34 +387,52 @@ function FinancialSafety() {
           <Card>
             <CardTitle>Being honest about limits</CardTitle>
             <p className="mt-2 text-sm text-muted-foreground">
-              SafeBank is designed to be private, but no app is completely invisible. Someone with access to your device
-              or accounts — or your network or service provider — may still be able to see that you visited sites or apps,
-              including this one. Device-level activity may remain visible regardless of what SafeBank does.
+              SafeBank is designed to be private, but no app is completely invisible. Someone with
+              access to your device or accounts — or your network or service provider — may still be
+              able to see that you visited sites or apps, including this one. Device-level activity
+              may remain visible regardless of what SafeBank does.
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-              If device monitoring is a concern in your situation, consider using a trusted device, private browsing, or
-              asking a support organisation about safe device access.
+              If device monitoring is a concern in your situation, consider using a trusted device,
+              private browsing, or asking a support organisation about safe device access.
             </p>
           </Card>
         </div>
       )}
 
-      <SectionTitle title="" subtitle="You can leave this section at any time — nothing needs to be completed." />
+      <SectionTitle
+        title=""
+        subtitle="You can leave this section at any time — nothing needs to be completed."
+      />
 
       {/* Add contact modal */}
       <Modal open={contactOpen} onClose={() => setContactOpen(false)} title="Add Sample Contact">
         <form onSubmit={addContact} className="space-y-4">
           <div>
             <Label htmlFor="c-name">Name</Label>
-            <Input id="c-name" placeholder="e.g. Aunt Nomsa" value={contact.name} onChange={(e) => setContact({ ...contact, name: e.target.value })} />
+            <Input
+              id="c-name"
+              placeholder="e.g. Aunt Nomsa"
+              value={contact.name}
+              onChange={(e) => setContact({ ...contact, name: e.target.value })}
+            />
           </div>
           <div>
             <Label htmlFor="c-rel">Relationship (optional)</Label>
-            <Input id="c-rel" placeholder="e.g. Family, friend, colleague" value={contact.relation} onChange={(e) => setContact({ ...contact, relation: e.target.value })} />
+            <Input
+              id="c-rel"
+              placeholder="e.g. Family, friend, colleague"
+              value={contact.relation}
+              onChange={(e) => setContact({ ...contact, relation: e.target.value })}
+            />
           </div>
           {contactError && <p className="text-xs font-medium text-destructive">{contactError}</p>}
-          <Button type="submit" className="w-full">Add Contact</Button>
-          <p className="text-center text-[11px] text-muted-foreground">Sample contact only — no messages are sent and nothing is shared.</p>
+          <Button type="submit" className="w-full">
+            Add Contact
+          </Button>
+          <p className="text-center text-[11px] text-muted-foreground">
+            Sample contact only — no messages are sent and nothing is shared.
+          </p>
         </form>
       </Modal>
     </div>

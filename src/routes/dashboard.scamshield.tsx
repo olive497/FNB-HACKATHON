@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { AlertTriangle, CheckCircle2, CircleAlert, GraduationCap, MessageSquareWarning, ScanSearch, ShieldCheck } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle2,
+  CircleAlert,
+  GraduationCap,
+  MessageSquareWarning,
+  ScanSearch,
+  ShieldCheck,
+} from "lucide-react";
 import { Badge, Button, Card, CardTitle, SectionTitle, Textarea } from "@/components/ui";
 import { SCAM_EDUCATION, SCAM_QUIZ, analyseMessage, type ScamResult } from "@/lib/demo-data";
 import { useSafeBank } from "@/store/store";
@@ -9,7 +17,11 @@ export const Route = createFileRoute("/dashboard/scamshield")({
   head: () => ({
     meta: [
       { title: "ScamShield — SafeBank" },
-      { name: "description", content: "Check suspicious messages with transparent rule-based detection, learn common scams and test yourself. Demo." },
+      {
+        name: "description",
+        content:
+          "Check suspicious messages with transparent rule-based detection, learn common scams and test yourself. Demo.",
+      },
       { property: "og:title", content: "ScamShield — SafeBank" },
       { property: "og:description", content: "Financial scam awareness and message checking." },
       { property: "og:type", content: "website" },
@@ -73,17 +85,34 @@ function ScamShield() {
 
   const levelMeta = result
     ? result.level === "high"
-      ? { label: "HIGH RISK", tone: "danger" as const, icon: AlertTriangle, cls: "border-destructive/30 bg-destructive/10" }
+      ? {
+          label: "HIGH RISK",
+          tone: "danger" as const,
+          icon: AlertTriangle,
+          cls: "border-destructive/30 bg-destructive/10",
+        }
       : result.level === "medium"
-        ? { label: "CAUTION", tone: "warning" as const, icon: CircleAlert, cls: "border-accent/40 bg-accent/10" }
-        : { label: "LOW RISK", tone: "positive" as const, icon: CheckCircle2, cls: "border-primary/30 bg-primary/10" }
+        ? {
+            label: "CAUTION",
+            tone: "warning" as const,
+            icon: CircleAlert,
+            cls: "border-accent/40 bg-accent/10",
+          }
+        : {
+            label: "LOW RISK",
+            tone: "positive" as const,
+            icon: CheckCircle2,
+            cls: "border-primary/30 bg-primary/10",
+          }
     : null;
 
   return (
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-bold tracking-tight">ScamShield</h2>
-        <p className="text-sm text-muted-foreground">Recognise financial scams before they cost you. Prototype with rule-based checking.</p>
+        <p className="text-sm text-muted-foreground">
+          Recognise financial scams before they cost you. Prototype with rule-based checking.
+        </p>
       </div>
 
       {/* Scam checker */}
@@ -92,7 +121,9 @@ function ScamShield() {
           <ScanSearch className="h-5 w-5 text-primary" />
           <CardTitle>Scam Checker</CardTitle>
         </div>
-        <p className="mt-1 text-sm text-muted-foreground">Paste a suspicious SMS, WhatsApp message or link.</p>
+        <p className="mt-1 text-sm text-muted-foreground">
+          Paste a suspicious SMS, WhatsApp message or link.
+        </p>
         <Textarea
           aria-label="Suspicious message"
           className="mt-3"
@@ -122,15 +153,18 @@ function ScamShield() {
                     <li key={rule.id} className="rounded-xl bg-card p-3 text-sm">
                       <p className="font-bold">{rule.label}</p>
                       <p className="mt-0.5 text-muted-foreground">{rule.why}</p>
-                      <p className="mt-1 text-xs italic text-muted-foreground">Matched: “{matches.join(", ")}”</p>
+                      <p className="mt-1 text-xs italic text-muted-foreground">
+                        Matched: “{matches.join(", ")}”
+                      </p>
                     </li>
                   ))}
                 </ul>
               </>
             ) : (
               <p className="mt-3 text-sm">
-                No known scam indicators were found — but that does <strong>not</strong> mean the message is safe.
-                New scams appear every day. Verify the sender through an official channel before acting.
+                No known scam indicators were found — but that does <strong>not</strong> mean the
+                message is safe. New scams appear every day. Verify the sender through an official
+                channel before acting.
               </p>
             )}
 
@@ -139,18 +173,27 @@ function ScamShield() {
               <ol className="mt-1.5 list-decimal space-y-1 pl-4 text-muted-foreground">
                 <li>Do not tap any links or reply to the message.</li>
                 <li>Never share an OTP, PIN or password with anyone.</li>
-                <li>Contact your bank using the number printed on your card or on its official app.</li>
-                <li>If it claims to be from a company, find its official contact details yourself.</li>
+                <li>
+                  Contact your bank using the number printed on your card or on its official app.
+                </li>
+                <li>
+                  If it claims to be from a company, find its official contact details yourself.
+                </li>
               </ol>
             </div>
-            <p className="mt-3 text-xs font-medium">Reminder: no legitimate organisation will ever ask you to share OTPs or passwords.</p>
+            <p className="mt-3 text-xs font-medium">
+              Reminder: no legitimate organisation will ever ask you to share OTPs or passwords.
+            </p>
           </div>
         )}
       </Card>
 
       {/* Education */}
       <div>
-        <SectionTitle title="Scam Education" subtitle="The tricks most commonly used in South Africa." />
+        <SectionTitle
+          title="Scam Education"
+          subtitle="The tricks most commonly used in South Africa."
+        />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SCAM_EDUCATION.map((s) => (
             <Card key={s.title}>
@@ -158,7 +201,9 @@ function ScamShield() {
                 <MessageSquareWarning className="h-4.5 w-4.5 text-destructive" /> {s.title}
               </CardTitle>
               <p className="mt-2 text-sm text-muted-foreground">{s.body}</p>
-              <p className="mt-3 rounded-xl bg-primary/10 p-2.5 text-xs font-semibold text-primary">{s.tip}</p>
+              <p className="mt-3 rounded-xl bg-primary/10 p-2.5 text-xs font-semibold text-primary">
+                {s.tip}
+              </p>
             </Card>
           ))}
         </div>
@@ -173,15 +218,21 @@ function ScamShield() {
 
         {!quizStarted && !quizDone && (
           <div className="mt-4">
-            <p className="text-sm text-muted-foreground">{SCAM_QUIZ.length} questions · see how sharp your scam radar is.</p>
-            <Button className="mt-3" onClick={() => setQuizStarted(true)}>Start Quiz</Button>
+            <p className="text-sm text-muted-foreground">
+              {SCAM_QUIZ.length} questions · see how sharp your scam radar is.
+            </p>
+            <Button className="mt-3" onClick={() => setQuizStarted(true)}>
+              Start Quiz
+            </Button>
           </div>
         )}
 
         {quizStarted && !quizDone && (
           <div className="mt-4">
             <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground">
-              <span>Question {qIndex + 1} of {SCAM_QUIZ.length}</span>
+              <span>
+                Question {qIndex + 1} of {SCAM_QUIZ.length}
+              </span>
               <span>Score: {score}</span>
             </div>
             <p className="mt-2 font-bold">{SCAM_QUIZ[qIndex]!.q}</p>
@@ -207,8 +258,10 @@ function ScamShield() {
             </div>
             {revealed && (
               <div className="mt-3 rounded-xl bg-muted p-3 text-sm">
-                    <p className="font-semibold">{selected === SCAM_QUIZ[qIndex]!.answer ? "Correct!" : "Not quite."}</p>
-                    <p className="mt-1 text-muted-foreground">{SCAM_QUIZ[qIndex]!.explain}</p>
+                <p className="font-semibold">
+                  {selected === SCAM_QUIZ[qIndex]!.answer ? "Correct!" : "Not quite."}
+                </p>
+                <p className="mt-1 text-muted-foreground">{SCAM_QUIZ[qIndex]!.explain}</p>
                 <Button size="sm" className="mt-3" onClick={nextQuestion}>
                   {qIndex + 1 >= SCAM_QUIZ.length ? "See Result" : "Next Question"}
                 </Button>
@@ -219,14 +272,24 @@ function ScamShield() {
 
         {quizDone && (
           <div className="mt-4 rounded-2xl border border-border p-4 text-center">
-            <p className="text-3xl font-extrabold text-primary">{score}/{SCAM_QUIZ.length}</p>
+            <p className="text-3xl font-extrabold text-primary">
+              {score}/{SCAM_QUIZ.length}
+            </p>
             <p className="mt-1 font-semibold">
-              {score === SCAM_QUIZ.length ? "Scam radar fully calibrated!" : score > 0 ? "Good instincts — keep learning." : "Everyone starts somewhere."}
+              {score === SCAM_QUIZ.length
+                ? "Scam radar fully calibrated!"
+                : score > 0
+                  ? "Good instincts — keep learning."
+                  : "Everyone starts somewhere."}
             </p>
             <p className="mt-1 text-sm text-muted-foreground">
-              {score === SCAM_QUIZ.length ? "You earned the Scam Spotter badge." : "Try again to earn the Scam Spotter badge."}
+              {score === SCAM_QUIZ.length
+                ? "You earned the Scam Spotter badge."
+                : "Try again to earn the Scam Spotter badge."}
             </p>
-            <Button size="sm" variant="outline" className="mt-3" onClick={restartQuiz}>Restart Quiz</Button>
+            <Button size="sm" variant="outline" className="mt-3" onClick={restartQuiz}>
+              Restart Quiz
+            </Button>
           </div>
         )}
       </Card>
