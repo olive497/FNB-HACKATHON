@@ -183,8 +183,7 @@ export function SafeBankProvider({ children }: { children: ReactNode }) {
       },
       setTheme: (t) => patch({ theme: t }),
       updatePrefs: (p) => patch({ prefs: { ...state.prefs, ...p } }),
-      updateUser: (u) =>
-        patch({ user: state.user ? { ...state.user, ...u } : state.user }),
+      updateUser: (u) => patch({ user: state.user ? { ...state.user, ...u } : state.user }),
       addIncome: (i) => {
         setState((s) => ({ ...s, income: [...s.income, { ...i, id: uid() }] }));
         toastMsg("Income added.");
@@ -256,7 +255,14 @@ export function SafeBankProvider({ children }: { children: ReactNode }) {
         toastMsg("Sensitive planning data cleared from this device session.");
       },
       resetDemoData: () => {
-        setState({ ...defaults, authed: state.authed, onboarded: state.onboarded, user: state.user, theme: state.theme, prefs: state.prefs });
+        setState({
+          ...defaults,
+          authed: state.authed,
+          onboarded: state.onboarded,
+          user: state.user,
+          theme: state.theme,
+          prefs: state.prefs,
+        });
         setSafety(emptySafety);
         toastMsg("Demo data reset to the original sample budget.");
       },

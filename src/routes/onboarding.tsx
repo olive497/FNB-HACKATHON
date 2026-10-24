@@ -1,6 +1,15 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, ArrowRight, Check, Languages, Sparkles, Wallet, Accessibility, Target } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Languages,
+  Sparkles,
+  Wallet,
+  Accessibility,
+  Target,
+} from "lucide-react";
 import { Button, Switch, Badge } from "@/components/ui";
 import { useSafeBank } from "@/store/store";
 
@@ -8,7 +17,11 @@ export const Route = createFileRoute("/onboarding")({
   head: () => ({
     meta: [
       { title: "Welcome — SafeBank Setup" },
-      { name: "description", content: "Set up your SafeBank demo profile: income type, goals, language and accessibility preferences." },
+      {
+        name: "description",
+        content:
+          "Set up your SafeBank demo profile: income type, goals, language and accessibility preferences.",
+      },
       { property: "og:title", content: "Welcome — SafeBank Setup" },
       { property: "og:description", content: "Set up your SafeBank demo profile." },
       { property: "og:type", content: "website" },
@@ -50,7 +63,12 @@ function Onboarding() {
   const [incomeType, setIncomeType] = useState<string>("");
   const [goals, setGoals] = useState<string[]>([]);
   const [language, setLanguage] = useState<"en" | "zu">("en");
-  const [prefs, setPrefs] = useState({ largeText: false, highContrast: false, reducedMotion: false, simpleLanguage: false });
+  const [prefs, setPrefs] = useState({
+    largeText: false,
+    highContrast: false,
+    reducedMotion: false,
+    simpleLanguage: false,
+  });
 
   const firstName = (user?.name ?? "Thando").split(" ")[0];
 
@@ -77,7 +95,9 @@ function Onboarding() {
       <div className="w-full max-w-lg">
         {/* Progress */}
         <div className="mb-6 flex items-center justify-between">
-          <Badge tone="brand"><Sparkles className="h-3.5 w-3.5" /> Step {step} of {TOTAL}</Badge>
+          <Badge tone="brand">
+            <Sparkles className="h-3.5 w-3.5" /> Step {step} of {TOTAL}
+          </Badge>
           <div className="flex gap-1.5">
             {Array.from({ length: TOTAL }, (_, i) => (
               <span
@@ -109,7 +129,9 @@ function Onboarding() {
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <Wallet className="h-6 w-6" />
               </span>
-              <h1 className="mt-4 text-xl font-extrabold tracking-tight">How do you usually earn money?</h1>
+              <h1 className="mt-4 text-xl font-extrabold tracking-tight">
+                How do you usually earn money?
+              </h1>
               <p className="mt-2 text-sm text-muted-foreground">
                 This helps SafeBank shape your budget around your income pattern.
               </p>
@@ -120,7 +142,9 @@ function Onboarding() {
                     onClick={() => setIncomeType(t)}
                     aria-pressed={incomeType === t}
                     className={`flex w-full cursor-pointer items-center justify-between rounded-xl border p-3.5 text-left text-sm font-semibold transition-colors ${
-                      incomeType === t ? "border-primary bg-primary/10 text-primary" : "border-border hover:bg-muted"
+                      incomeType === t
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-border hover:bg-muted"
                     }`}
                   >
                     {t}
@@ -136,8 +160,12 @@ function Onboarding() {
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <Target className="h-6 w-6" />
               </span>
-              <h1 className="mt-4 text-xl font-extrabold tracking-tight">What do you want to achieve?</h1>
-              <p className="mt-2 text-sm text-muted-foreground">Select everything that matters to you — you can change these anytime.</p>
+              <h1 className="mt-4 text-xl font-extrabold tracking-tight">
+                What do you want to achieve?
+              </h1>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Select everything that matters to you — you can change these anytime.
+              </p>
               <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
                 {GOAL_OPTIONS.map((g) => (
                   <button
@@ -145,7 +173,9 @@ function Onboarding() {
                     onClick={() => toggleGoal(g)}
                     aria-pressed={goals.includes(g)}
                     className={`flex cursor-pointer items-center justify-between rounded-xl border p-3 text-left text-sm font-semibold transition-colors ${
-                      goals.includes(g) ? "border-primary bg-primary/10 text-primary" : "border-border hover:bg-muted"
+                      goals.includes(g)
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-border hover:bg-muted"
                     }`}
                   >
                     {g}
@@ -172,7 +202,9 @@ function Onboarding() {
                     onClick={() => setLanguage(l.code)}
                     aria-pressed={language === l.code}
                     className={`cursor-pointer rounded-xl border p-4 text-center font-bold transition-colors ${
-                      language === l.code ? "border-primary bg-primary/10 text-primary" : "border-border hover:bg-muted"
+                      language === l.code
+                        ? "border-primary bg-primary/10 text-primary"
+                        : "border-border hover:bg-muted"
                     }`}
                   >
                     {l.label}
@@ -181,7 +213,8 @@ function Onboarding() {
               </div>
               {language === "zu" && (
                 <p className="mt-3 rounded-xl bg-accent/15 p-3 text-xs text-accent-foreground">
-                  Demo note: isiZulu is shown as a preference in this prototype; interface copy is still English while translations are prepared.
+                  Demo note: isiZulu is shown as a preference in this prototype; interface copy is
+                  still English while translations are prepared.
                 </p>
               )}
             </div>
@@ -192,18 +225,29 @@ function Onboarding() {
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <Accessibility className="h-6 w-6" />
               </span>
-              <h1 className="mt-4 text-xl font-extrabold tracking-tight">Accessibility preferences</h1>
-              <p className="mt-2 text-sm text-muted-foreground">Make SafeBank comfortable for you. You can adjust these later.</p>
+              <h1 className="mt-4 text-xl font-extrabold tracking-tight">
+                Accessibility preferences
+              </h1>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Make SafeBank comfortable for you. You can adjust these later.
+              </p>
               <div className="mt-5 space-y-1">
                 {(
                   [
                     ["largeText", "Large text", "Bigger text across the whole app"],
                     ["highContrast", "High contrast", "Stronger colours for easier reading"],
                     ["reducedMotion", "Reduced motion", "Minimise animations and transitions"],
-                    ["simpleLanguage", "Simple language", "Shorter, plainer wording where available"],
+                    [
+                      "simpleLanguage",
+                      "Simple language",
+                      "Shorter, plainer wording where available",
+                    ],
                   ] as const
                 ).map(([key, label, body]) => (
-                  <div key={key} className="flex items-center justify-between gap-4 rounded-xl p-3 hover:bg-muted">
+                  <div
+                    key={key}
+                    className="flex items-center justify-between gap-4 rounded-xl p-3 hover:bg-muted"
+                  >
                     <div>
                       <p className="text-sm font-semibold">{label}</p>
                       <p className="text-xs text-muted-foreground">{body}</p>
@@ -220,7 +264,11 @@ function Onboarding() {
           )}
 
           <div className="mt-8 flex items-center justify-between gap-3">
-            <Button variant="ghost" onClick={() => setStep(Math.max(1, step - 1))} disabled={step === 1}>
+            <Button
+              variant="ghost"
+              onClick={() => setStep(Math.max(1, step - 1))}
+              disabled={step === 1}
+            >
               <ArrowLeft className="h-4 w-4" /> Back
             </Button>
             <Button size="lg" onClick={next} disabled={!canNext}>

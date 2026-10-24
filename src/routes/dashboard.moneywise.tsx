@@ -9,7 +9,11 @@ export const Route = createFileRoute("/dashboard/moneywise")({
   head: () => ({
     meta: [
       { title: "MoneyWise — SafeBank" },
-      { name: "description", content: "Short financial literacy lessons with quizzes, progress tracking and badges. Demo content." },
+      {
+        name: "description",
+        content:
+          "Short financial literacy lessons with quizzes, progress tracking and badges. Demo content.",
+      },
       { property: "og:title", content: "MoneyWise — SafeBank" },
       { property: "og:description", content: "Financial literacy learning hub." },
       { property: "og:type", content: "website" },
@@ -58,9 +62,7 @@ function MoneyWise() {
   const totalLessons = LESSONS.length;
   const overallPct = Math.round((completed / totalLessons) * 100);
   const avgScore =
-    completed > 0
-      ? Math.round(Object.values(progress).reduce((a, b) => a + b, 0) / completed)
-      : 0;
+    completed > 0 ? Math.round(Object.values(progress).reduce((a, b) => a + b, 0) / completed) : 0;
 
   const openLesson = (lesson: Lesson) => {
     setActive(lesson);
@@ -94,7 +96,11 @@ function MoneyWise() {
 
   const badges = [
     { label: "First Steps", earned: completed >= 1, desc: "Complete your first lesson" },
-    { label: "Scam Spotter", earned: (progress["l4"] ?? 0) >= 100 || (progress["l4"] ?? 0) > 0, desc: "Complete Understanding Financial Abuse" },
+    {
+      label: "Scam Spotter",
+      earned: (progress["l4"] ?? 0) >= 100 || (progress["l4"] ?? 0) > 0,
+      desc: "Complete Understanding Financial Abuse",
+    },
     { label: "Money Master", earned: completed === totalLessons, desc: "Complete every lesson" },
   ];
 
@@ -102,14 +108,18 @@ function MoneyWise() {
     <div className="space-y-6">
       <div>
         <h2 className="text-xl font-bold tracking-tight">MoneyWise</h2>
-        <p className="text-sm text-muted-foreground">Short, practical lessons in plain language. Encouraging, never judgmental.</p>
+        <p className="text-sm text-muted-foreground">
+          Short, practical lessons in plain language. Encouraging, never judgmental.
+        </p>
       </div>
 
       {/* Gamification summary */}
       <div className="grid gap-3 sm:grid-cols-3">
         <Card className="p-4">
           <p className="text-sm text-muted-foreground">Lessons completed</p>
-          <p className="text-2xl font-extrabold">{completed}/{totalLessons}</p>
+          <p className="text-2xl font-extrabold">
+            {completed}/{totalLessons}
+          </p>
           <Progress value={overallPct} className="mt-2" />
         </Card>
         <Card className="p-4">
@@ -134,12 +144,17 @@ function MoneyWise() {
         <SectionTitle title="Learning Categories" />
         <div className="flex flex-wrap gap-2">
           {LESSON_CATEGORIES.map((c) => (
-            <span key={c} className="rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-semibold text-muted-foreground">
+            <span
+              key={c}
+              className="rounded-full border border-border bg-card px-3.5 py-1.5 text-xs font-semibold text-muted-foreground"
+            >
               {c}
             </span>
           ))}
         </div>
-        <p className="mt-2 text-xs text-muted-foreground">Four lessons are live today — more categories are in development.</p>
+        <p className="mt-2 text-xs text-muted-foreground">
+          Four lessons are live today — more categories are in development.
+        </p>
       </div>
 
       {/* Lessons */}
@@ -153,14 +168,26 @@ function MoneyWise() {
                   <Badge tone="brand">{lesson.category}</Badge>
                   <CardTitle className="mt-2">{lesson.title}</CardTitle>
                 </div>
-                {best !== undefined && <Badge tone="positive"><CheckCircle2 className="h-3 w-3" /> {best}%</Badge>}
+                {best !== undefined && (
+                  <Badge tone="positive">
+                    <CheckCircle2 className="h-3 w-3" /> {best}%
+                  </Badge>
+                )}
               </div>
               <p className="mt-2 flex items-center gap-1 text-xs text-muted-foreground">
-                <Clock className="h-3.5 w-3.5" /> {lesson.minutes} min read · {lesson.quiz.length} quiz questions
+                <Clock className="h-3.5 w-3.5" /> {lesson.minutes} min read · {lesson.quiz.length}{" "}
+                quiz questions
               </p>
-              <p className="mt-2 flex-1 text-sm text-muted-foreground">{lesson.sections[0]?.body.slice(0, 120) ?? ""}…</p>
-              <Button className="mt-4 w-full" variant={best !== undefined ? "outline" : "default"} onClick={() => openLesson(lesson)}>
-                <BookOpen className="h-4 w-4" /> {best !== undefined ? "Review Lesson" : "Start Lesson"}
+              <p className="mt-2 flex-1 text-sm text-muted-foreground">
+                {lesson.sections[0]?.body.slice(0, 120) ?? ""}…
+              </p>
+              <Button
+                className="mt-4 w-full"
+                variant={best !== undefined ? "outline" : "default"}
+                onClick={() => openLesson(lesson)}
+              >
+                <BookOpen className="h-4 w-4" />{" "}
+                {best !== undefined ? "Review Lesson" : "Start Lesson"}
               </Button>
             </Card>
           );
@@ -186,12 +213,16 @@ function MoneyWise() {
                   <GraduationCap className="h-4.5 w-4.5 shrink-0" />
                   Ready? A short quiz follows to check what you picked up.
                 </div>
-                <Button className="w-full" onClick={() => setReading(false)}>Take the Quiz</Button>
+                <Button className="w-full" onClick={() => setReading(false)}>
+                  Take the Quiz
+                </Button>
               </div>
             ) : (
               <div className="mt-3">
                 <div className="flex items-center justify-between text-xs font-semibold text-muted-foreground">
-                  <span>Question {qIndex + 1} of {active.quiz.length}</span>
+                  <span>
+                    Question {qIndex + 1} of {active.quiz.length}
+                  </span>
                   <span>Score: {score}</span>
                 </div>
                 <p className="mt-2 font-bold">{active.quiz[qIndex]!.q}</p>
@@ -217,7 +248,9 @@ function MoneyWise() {
                 </div>
                 {revealed && (
                   <div className="mt-3 rounded-xl bg-muted p-3 text-sm">
-                    <p className="font-semibold">{selected === active.quiz[qIndex]!.answer ? "Correct!" : "Not quite."}</p>
+                    <p className="font-semibold">
+                      {selected === active.quiz[qIndex]!.answer ? "Correct!" : "Not quite."}
+                    </p>
                     <p className="mt-1 text-muted-foreground">{active.quiz[qIndex]!.explain}</p>
                     <Button size="sm" className="mt-3" onClick={nextStep}>
                       {qIndex + 1 < active.quiz.length ? "Next Question" : "Finish Lesson"}
@@ -233,7 +266,9 @@ function MoneyWise() {
       <Card className="flex items-center gap-3">
         <Award className="h-6 w-6 shrink-0 text-accent" />
         <p className="text-sm text-muted-foreground">
-          Complete all {totalLessons} lessons to earn the <span className="font-bold text-foreground">Money Master</span> badge. Scores save on this device as part of the demo.
+          Complete all {totalLessons} lessons to earn the{" "}
+          <span className="font-bold text-foreground">Money Master</span> badge. Scores save on this
+          device as part of the demo.
         </p>
       </Card>
     </div>

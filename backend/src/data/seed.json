@@ -1,0 +1,251 @@
+{
+  "demoUser": {
+    "name": "Thando Mokoena",
+    "email": "thando.demo@safebank.co.za"
+  },
+  "income": [
+    {
+      "id": "i1",
+      "source": "Salary",
+      "amount": 7200,
+      "date": "2026-08-01",
+      "note": "Retail salary"
+    },
+    {
+      "id": "i2",
+      "source": "Side hustle",
+      "amount": 1850,
+      "date": "2026-08-16",
+      "note": "Weekend market stall"
+    },
+    {
+      "id": "i3",
+      "source": "Salary",
+      "amount": 7200,
+      "date": "2026-09-01",
+      "note": "Retail salary"
+    },
+    {
+      "id": "i4",
+      "source": "Freelance",
+      "amount": 2600,
+      "date": "2026-09-12",
+      "note": "Logo design job"
+    },
+    {
+      "id": "i5",
+      "source": "Salary",
+      "amount": 7200,
+      "date": "2026-10-01",
+      "note": "Retail salary"
+    },
+    {
+      "id": "i6",
+      "source": "Side hustle",
+      "amount": 1400,
+      "date": "2026-10-09",
+      "note": "Hair braiding"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "e1",
+      "category": "Rent",
+      "amount": 3200,
+      "date": "2026-08-02"
+    },
+    {
+      "id": "e2",
+      "category": "Food",
+      "amount": 1980,
+      "date": "2026-08-08"
+    },
+    {
+      "id": "e3",
+      "category": "Transport",
+      "amount": 640,
+      "date": "2026-08-10"
+    },
+    {
+      "id": "e4",
+      "category": "Airtime & Data",
+      "amount": 320,
+      "date": "2026-08-14"
+    },
+    {
+      "id": "e5",
+      "category": "Electricity",
+      "amount": 480,
+      "date": "2026-08-20"
+    },
+    {
+      "id": "e6",
+      "category": "Rent",
+      "amount": 3200,
+      "date": "2026-09-02"
+    },
+    {
+      "id": "e7",
+      "category": "Food",
+      "amount": 1740,
+      "date": "2026-09-07"
+    },
+    {
+      "id": "e8",
+      "category": "Transport",
+      "amount": 755,
+      "date": "2026-09-11"
+    },
+    {
+      "id": "e9",
+      "category": "Debt",
+      "amount": 690,
+      "date": "2026-09-15",
+      "note": "Store account"
+    },
+    {
+      "id": "e10",
+      "category": "Electricity",
+      "amount": 510,
+      "date": "2026-09-22"
+    },
+    {
+      "id": "e11",
+      "category": "Rent",
+      "amount": 3200,
+      "date": "2026-10-02"
+    },
+    {
+      "id": "e12",
+      "category": "Food",
+      "amount": 1520,
+      "date": "2026-10-05"
+    },
+    {
+      "id": "e13",
+      "category": "Transport",
+      "amount": 890,
+      "date": "2026-10-06",
+      "note": "Taxi fare top-ups"
+    },
+    {
+      "id": "e14",
+      "category": "Airtime & Data",
+      "amount": 295,
+      "date": "2026-10-08"
+    },
+    {
+      "id": "e15",
+      "category": "Healthcare",
+      "amount": 450,
+      "date": "2026-10-12",
+      "note": "Clinic fees"
+    }
+  ],
+  "goals": [
+    {
+      "id": "g1",
+      "name": "Emergency Fund",
+      "category": "Emergency Fund",
+      "target": 6000,
+      "saved": 3600,
+      "targetDate": "2026-12-31"
+    },
+    {
+      "id": "g2",
+      "name": "Sewing machine",
+      "category": "Business Equipment",
+      "target": 3500,
+      "saved": 1150,
+      "targetDate": "2027-01-31"
+    },
+    {
+      "id": "g3",
+      "name": "Next semester books",
+      "category": "Education",
+      "target": 2000,
+      "saved": 1650,
+      "targetDate": "2026-11-30"
+    },
+    {
+      "id": "g4",
+      "name": "December travel home",
+      "category": "Transport",
+      "target": 2400,
+      "saved": 620,
+      "targetDate": "2026-12-15"
+    }
+  ],
+  "debts": [
+    {
+      "id": "d1",
+      "name": "Clothing store account",
+      "balance": 4200,
+      "rate": 21,
+      "monthlyPayment": 690
+    },
+    {
+      "id": "d2",
+      "name": "Personal loan",
+      "balance": 8500,
+      "rate": 17.5,
+      "monthlyPayment": 850
+    }
+  ],
+  "recoveryGoals": [
+    {
+      "id": "r1",
+      "name": "Build a 3-month emergency fund",
+      "category": "Emergency Fund",
+      "target": 18000,
+      "saved": 3600
+    },
+    {
+      "id": "r2",
+      "name": "Clear the clothing store account",
+      "category": "Personal Savings",
+      "target": 4200,
+      "saved": 1250
+    }
+  ],
+  "categories": {
+    "expense": [
+      "Rent",
+      "Food",
+      "Transport",
+      "Electricity",
+      "Airtime & Data",
+      "Education",
+      "Healthcare",
+      "Debt",
+      "Family Support",
+      "Other"
+    ],
+    "income": [
+      "Salary",
+      "Freelance",
+      "Small business",
+      "Student allowance",
+      "Side hustle",
+      "Other"
+    ],
+    "goal": [
+      "Emergency Fund",
+      "Education",
+      "Rent",
+      "Transport",
+      "Business Equipment",
+      "Personal Savings"
+    ],
+    "safety": [
+      "Transport",
+      "Temporary accommodation",
+      "Food",
+      "Phone & data",
+      "Medication",
+      "Childcare",
+      "Essential documents",
+      "Other necessities"
+    ]
+  }
+}

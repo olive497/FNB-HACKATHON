@@ -1,0 +1,66 @@
+{
+  "education": [
+    {
+      "title": "Phishing",
+      "body": "Fake emails or websites that copy a real bank or company to trick you into entering your details. Check the web address carefully — type it yourself instead of following links.",
+      "tip": "Never sign in from a link in a message. Open your browser and type the address."
+    },
+    {
+      "title": "Smishing (SMS phishing)",
+      "body": "Fraudulent SMS or WhatsApp messages claiming your account is blocked, or that you have won a prize. Banks never ask for OTPs, PINs or passwords by message.",
+      "tip": "Call your bank using the number on the back of your card — never a number in the message."
+    },
+    {
+      "title": "Fake banking messages",
+      "body": "Screenshots of fake 'payment proofs' or 'EFT notifications'. Money can appear to reflect and later be reversed.",
+      "tip": "Wait until the money has cleared and is truly available before delivering goods."
+    },
+    {
+      "title": "Investment scams",
+      "body": "'Double your money' schemes on WhatsApp and social media. Guaranteed returns and pressure to recruit friends are warning signs.",
+      "tip": "Legitimate investments never guarantee profits. Check with the FSCA before investing."
+    },
+    {
+      "title": "Job scams",
+      "body": "'Earn R5,000 per day from home' offers that ask for a joining fee or your banking details upfront.",
+      "tip": "A real employer never asks you to pay to get a job."
+    },
+    {
+      "title": "Social engineering",
+      "body": "Someone builds trust — posing as a bank agent, a family member in trouble, or a romantic partner — to get money or information.",
+      "tip": "Verify the person through a channel you trust before sending anything."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Your 'bank' SMS asks you to confirm your OTP to stop a suspicious payment. What do you do?",
+      "options": [
+        "Send the OTP quickly so they can block it",
+        "Do nothing — real banks never ask for your OTP — and call the bank using the number on your card",
+        "Reply asking if they are really the bank"
+      ],
+      "answer": 1,
+      "explain": "Anyone with your OTP can move your money. Banks never ask for it by message or phone."
+    },
+    {
+      "q": "A WhatsApp job ad offers R4,500 per day, but you must pay a R250 'registration fee' first. This is…",
+      "options": [
+        "A good deal worth trying",
+        "Probably legitimate if they have a logo",
+        "A scam — real jobs never ask you to pay first"
+      ],
+      "answer": 2,
+      "explain": "Pay-first offers are one of the most common job scams in South Africa."
+    },
+    {
+      "q": "Which of these is the safest way to check if a message from your bank is real?",
+      "options": [
+        "Tap the link in the message to check",
+        "Call your bank using the number on your card or official app",
+        "Reply to the message asking for proof"
+      ],
+      "answer": 1,
+      "explain": "Always verify through an official channel you find yourself."
+    }
+  ]
+}
