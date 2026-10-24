@@ -1,4 +1,4 @@
-import { Router } from "express";
+﻿import { Router } from "express";
 import jwt from "jsonwebtoken";
 import { z } from "zod";
 import { config } from "../config.js";
@@ -6,6 +6,20 @@ import { findUserById, save } from "../db.js";
 import { HttpError, validate } from "../middleware/index.js";
 import { lessonData, scamEducation, supportData, seed } from "../data/index.js";
 import { analyseMessage, loadModel } from "../services/scam.js";
+
+// Simple in-memory rate limiter (per IP + path). Mirrors auth.js.
+const hits = new Map();
+function limit(max = 30, windowMs = 60_000) {
+  return (req, _res, next) => {
+    const now = Date.now();
+    const key = req.ip + req.path;
+    const arr = (hits.get(key) ?? []).filter((t) => now - t < windowMs);
+    arr.push(now);
+    hits.set(key, arr);
+    if (arr.length > max) return next(new HttpError(429, "Too many requests, try again in a minute"));
+    next();
+  };
+}
 
 export const learn = Router();
 
@@ -22,7 +36,7 @@ learn.use((req, _res, next) => {
 
 /* ---------------- ScamShield ---------------- */
 
-learn.post("/scamshield/analyse", validate(z.object({ text: z.string().trim().min(3).max(5000) })), (req, res) => {
+learn.post("/scamshield/analyse", limit(30), validate(z.object({ text: z.string().trim().min(3).max(5000) })), (req, res) => {
   res.json(analyseMessage(req.body.text));
 });
 learn.get("/scamshield/education", (_req, res) => res.json({ items: scamEducation.education }));

@@ -86,3 +86,14 @@ test("support filters", async () => {
   const r = await call("GET", "/support?category=GBV%20support");
   assert.equal(r.body.items.length, 1);
 });
+
+test("scamshield rate limit blocks after 30 requests", async () => {
+  const payload = { text: "Are we still on for lunch tomorrow at one?" };
+  let lastStatus = 0;
+  for (let i = 0; i < 35; i++) {
+    const r = await call("POST", "/scamshield/analyse", payload);
+    lastStatus = r.status;
+    if (lastStatus === 429) break;
+  }
+  assert.equal(lastStatus, 429);
+});
