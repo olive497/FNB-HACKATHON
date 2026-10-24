@@ -1,0 +1,103 @@
+{
+  "categories": [
+    "Financial guidance",
+    "GBV support",
+    "Legal assistance",
+    "Counselling",
+    "Employment support",
+    "Skills development",
+    "Community organisations"
+  ],
+  "entries": [
+    {
+      "id": "s1",
+      "name": "Sample Community Money Advice Centre",
+      "category": "Financial guidance",
+      "region": "Johannesburg, Gauteng",
+      "contact": "0800 000 001 (sample)",
+      "hours": "Mon–Fri 08:00–16:00",
+      "verified": "Sample entry — not verified"
+    },
+    {
+      "id": "s2",
+      "name": "Sample GBV Support Command Centre",
+      "category": "GBV support",
+      "region": "National",
+      "contact": "0800 000 002 (sample)",
+      "hours": "24 hours",
+      "verified": "Sample entry — not verified"
+    },
+    {
+      "id": "s3",
+      "name": "Sample Legal Aid Advice Office",
+      "category": "Legal assistance",
+      "region": "Durban, KwaZulu-Natal",
+      "contact": "0800 000 003 (sample)",
+      "hours": "Mon–Fri 09:00–17:00",
+      "verified": "Sample entry — not verified"
+    },
+    {
+      "id": "s4",
+      "name": "Sample Counselling Helpline",
+      "category": "Counselling",
+      "region": "National",
+      "contact": "0800 000 004 (sample)",
+      "hours": "Daily 07:00–22:00",
+      "verified": "Sample entry — not verified"
+    },
+    {
+      "id": "s5",
+      "name": "Sample Youth Employment Hub",
+      "category": "Employment support",
+      "region": "Cape Town, Western Cape",
+      "contact": "0800 000 005 (sample)",
+      "hours": "Mon–Fri 08:30–16:30",
+      "verified": "Sample entry — not verified"
+    },
+    {
+      "id": "s6",
+      "name": "Sample Skills & Training College",
+      "category": "Skills development",
+      "region": "Polokwane, Limpopo",
+      "contact": "0800 000 006 (sample)",
+      "hours": "Mon–Fri 08:00–17:00",
+      "verified": "Sample entry — not verified"
+    },
+    {
+      "id": "s7",
+      "name": "Sample Community Upliftment Forum",
+      "category": "Community organisations",
+      "region": "Gqeberha, Eastern Cape",
+      "contact": "0800 000 007 (sample)",
+      "hours": "Weekdays 09:00–15:00",
+      "verified": "Sample entry — not verified"
+    },
+    {
+      "id": "s8",
+      "name": "Sample Debt Counselling Helpline",
+      "category": "Financial guidance",
+      "region": "National",
+      "contact": "0800 000 008 (sample)",
+      "hours": "Mon–Sat 08:00–18:00",
+      "verified": "Sample entry — not verified"
+    }
+  ],
+  "recoveryResources": [
+    {
+      "title": "Free budgeting help",
+      "body": "Sample listing: community money advice centres help you restructure spending for free."
+    },
+    {
+      "title": "Learn a skill",
+      "body": "Sample listing: local TVET colleges and skills centres offer short courses, some funded."
+    },
+    {
+      "title": "Work readiness",
+      "body": "Sample listing: youth employment hubs help with CVs, interviews and job placement."
+    },
+    {
+      "title": "Know your rights",
+      "body": "Sample listing: advice offices explain credit rights, garnishee orders and ccma processes."
+    }
+  ]
+}
