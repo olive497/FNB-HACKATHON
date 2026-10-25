@@ -81,9 +81,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "SafeBank — Your Money. Your Safety. Your Future." },
-      { name: "description", content: "SafeBank by Team Finovators: inclusive budgeting, savings, scam awareness and financial safety tools for South Africans. Demo prototype with simulated data." },
+      {
+        name: "description",
+        content:
+          "SafeBank by Team Finovators: inclusive budgeting, savings, scam awareness and financial safety tools for South Africans. Demo prototype with simulated data.",
+      },
       { property: "og:title", content: "SafeBank — Your Money. Your Safety. Your Future." },
-      { property: "og:description", content: "Inclusive budgeting, savings, scam awareness and financial safety tools for South Africans, by Team Finovators." },
+      {
+        property: "og:description",
+        content:
+          "Inclusive budgeting, savings, scam awareness and financial safety tools for South Africans, by Team Finovators.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

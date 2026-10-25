@@ -1,0 +1,181 @@
+{
+  "categories": [
+    "Budgeting Basics",
+    "Saving Money",
+    "Understanding Credit",
+    "Debt Management",
+    "Financial Fraud Awareness",
+    "Financial Independence",
+    "Understanding Financial Abuse"
+  ],
+  "lessons": [
+    {
+      "id": "l1",
+      "title": "Budgeting on an Irregular Income",
+      "category": "Budgeting Basics",
+      "minutes": 5,
+      "sections": [
+        {
+          "heading": "Start with your lowest month",
+          "body": "If your income changes every month, build your budget on the smallest amount you earned in the last three months. Anything extra above that becomes savings or debt payments — not spending money."
+        },
+        {
+          "heading": "Essentials first",
+          "body": "List your essential expenses in order: food, transport to work, rent or accommodation, electricity. Cover these before anything else, and know exactly how much they cost each month."
+        },
+        {
+          "heading": "Give every rand a job",
+          "body": "When a good month arrives, decide immediately where the extra goes: a portion to savings, a portion to debt, and a small amount for yourself. Deciding in advance stops the money from disappearing."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "You earned R8,000, R5,500 and R6,200 over three months. What should your base budget be built on?",
+          "options": [
+            "R8,000",
+            "R6,600 (the average)",
+            "R5,500 (the lowest)"
+          ],
+          "answer": 2,
+          "explain": "Building on your lowest month means a slow month never puts you into shortfall."
+        },
+        {
+          "q": "In a good month, the extra money above your base budget should first go to…",
+          "options": [
+            "Treats and celebrations",
+            "Savings and debt payments you planned in advance",
+            "New clothes"
+          ],
+          "answer": 1,
+          "explain": "Deciding in advance where extra money goes is what turns a good month into a safer future."
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "title": "Your First Emergency Fund",
+      "category": "Saving Money",
+      "minutes": 4,
+      "sections": [
+        {
+          "heading": "Why R1,000 first?",
+          "body": "Most emergencies — a clinic visit, a tyre, a funeral contribution — cost under R1,000. A small emergency fund stops you from borrowing at high interest the next time something goes wrong."
+        },
+        {
+          "heading": "Save small, save often",
+          "body": "R50 a week is R2,600 a year. Saving a small amount regularly works better than waiting to save a big amount 'someday'. Even irregular earners can save a fixed share — for example 10% — of whatever comes in."
+        },
+        {
+          "heading": "Keep it separate",
+          "body": "Keep emergency savings somewhere separate from your everyday spending money so it is not spent by accident. SafeBank's SafePocket helps you track the goal — the money itself stays wherever you choose to keep it."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What is a good first emergency savings target?",
+          "options": [
+            "R100,000",
+            "R1,000",
+            "Whatever is left at the end of the year"
+          ],
+          "answer": 1,
+          "explain": "R1,000 covers most day-to-day emergencies and is reachable within a few months."
+        },
+        {
+          "q": "As an irregular earner, the most reliable way to save is…",
+          "options": [
+            "Saving whatever is left over",
+            "Saving a fixed percentage of every amount you earn",
+            "Waiting for a bonus"
+          ],
+          "answer": 1,
+          "explain": "A fixed share of every payment — even small ones — builds the habit and the fund."
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "title": "What Credit Really Costs",
+      "category": "Understanding Credit",
+      "minutes": 5,
+      "sections": [
+        {
+          "heading": "Interest is the price of borrowing",
+          "body": "When you borrow R1,000 at 20% interest per year and pay it back over a year, you repay about R1,110 or more depending on fees. The faster you repay, the less interest you pay."
+        },
+        {
+          "heading": "Store accounts add up",
+          "body": "Store accounts often charge 20%+ interest. A R2,000 account paid with minimum monthly instalments can take years and cost far more than R2,000 in total."
+        },
+        {
+          "heading": "Know your rights",
+          "body": "Under the National Credit Act, lenders must check that you can afford the loan. If a lender offers credit without checking your income, walk away — and never borrow to pay off another loan."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Borrowing R1,000 at 20% interest means you will repay…",
+          "options": [
+            "Exactly R1,000",
+            "More than R1,000 — interest plus possible fees",
+            "Less than R1,000"
+          ],
+          "answer": 1,
+          "explain": "Interest and fees are the cost of borrowing; quick repayment keeps them low."
+        },
+        {
+          "q": "A lender offers you a loan without checking your income or expenses. This is…",
+          "options": [
+            "Convenient — take it",
+            "A warning sign — responsible lenders must check affordability",
+            "Normal practice"
+          ],
+          "answer": 1,
+          "explain": "The National Credit Act requires affordability checks. Lenders that skip them are dangerous."
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "title": "Understanding Financial Abuse",
+      "category": "Understanding Financial Abuse",
+      "minutes": 4,
+      "sections": [
+        {
+          "heading": "What it can look like",
+          "body": "Financial abuse is when someone controls your access to money — taking your wages or grant, stopping you from working, forcing debt into your name, or threatening you financially. It can happen to anyone, in any kind of relationship."
+        },
+        {
+          "heading": "It is not your fault",
+          "body": "Economic dependence is often created gradually and deliberately. Wanting financial independence is healthy and normal, and small steps — your own account, your own savings knowledge, knowing what things cost — build towards it."
+        },
+        {
+          "heading": "You can plan quietly",
+          "body": "SafeBank's Financial Safety section offers private tools: estimating essential living costs, listing trusted people, and learning what support exists. Nothing you plan there is shared or saved on your device."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which of these is an example of financial abuse?",
+          "options": [
+            "A partner and you deciding a budget together",
+            "A partner taking your wages and refusing to explain what happened to the money",
+            "A family member lending you money with a written agreement"
+          ],
+          "answer": 1,
+          "explain": "Controlling or taking your money without agreement is financial control — a form of abuse."
+        },
+        {
+          "q": "SafeBank's Financial Safety tools…",
+          "options": [
+            "Send your plan to the authorities automatically",
+            "Keep your planning private, save nothing sensitive on your device, and share nothing without your action",
+            "Require you to describe your situation in detail"
+          ],
+          "answer": 1,
+          "explain": "The tools are private by design — no disclosures required, nothing stored or shared automatically."
+        }
+      ]
+    }
+  ]
+}

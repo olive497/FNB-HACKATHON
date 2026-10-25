@@ -1,0 +1,82 @@
+[
+  {
+    "id": "otp",
+    "label": "Asks for an OTP or PIN",
+    "weight": 35,
+    "pattern": "\\b(otp|one[-\\s]?time\\s*(pin|password|code)|pin\\s*code|verification\\s*code|verify\\s*(your|the)\\s*(account|identity))\\b",
+    "flags": "i",
+    "why": "No bank or legitimate service will ever ask you to share an OTP, PIN or password. Anyone who receives your OTP can move your money."
+  },
+  {
+    "id": "password",
+    "label": "Asks for a password or login details",
+    "weight": 35,
+    "pattern": "\\b(password|passcode|login\\s*(details|credentials)|username\\s*and\\s*password|app\\s*link)\\b",
+    "flags": "i",
+    "why": "Sharing your login details gives scammers full access to your accounts."
+  },
+  {
+    "id": "urgent",
+    "label": "Urgent payment demand",
+    "weight": 20,
+    "pattern": "\\b(urgent(ly)?|immediately|right\\s*now|within\\s*\\d+\\s*(hours|minutes)|last\\s*(warning|chance)|final\\s*notice|act\\s*now)\\b",
+    "flags": "i",
+    "why": "Pressure and urgency are classic scam tactics — they stop you from thinking clearly or checking with someone you trust."
+  },
+  {
+    "id": "link",
+    "label": "Suspicious link",
+    "weight": 20,
+    "pattern": "(https?:\\/\\/|www\\.|\\w+\\.(xyz|click|top|shop|loan|money)|bit\\.ly|tinyurl)",
+    "flags": "i",
+    "why": "Unknown links can lead to fake login pages that steal your details. Type the bank's web address yourself instead of tapping links."
+  },
+  {
+    "id": "suspension",
+    "label": "Account suspension threat",
+    "weight": 25,
+    "pattern": "\\b(account\\s*(has\\s*been|will\\s*be|is)\\s*(suspended|blocked|frozen|closed|locked)|suspend\\s*your\\s*account|unauthorised\\s*(login|access|activity))\\b",
+    "flags": "i",
+    "why": "Banks do not close accounts by SMS and never ask you to 'confirm' details to stop a suspension. Contact your bank using the number on your card."
+  },
+  {
+    "id": "prize",
+    "label": "Prize or lottery win",
+    "weight": 25,
+    "pattern": "\\b(congratulations|you('ve| have)?\\s*(won|been\\s*selected)|prize|lotto|lottery|lucky\\s*draw|cash\\s*giveaway|claim\\s*your)\\b",
+    "flags": "i",
+    "why": "If you never entered, you cannot win. A 'fee' to release a prize is always a scam."
+  },
+  {
+    "id": "bank",
+    "label": "Bank impersonation language",
+    "weight": 20,
+    "pattern": "\\b(fnb|first\\s*national\\s*bank|capitec|absa|standard\\s*bank|nedbank|african\\s*bank|tymebank|discover\\s*bank|sassa)\\b.{0,40}\\b(confirm|verify|update|reactivate|blocked|payment)\\b",
+    "flags": "is",
+    "why": "Scammers imitate real bank names. Verify by calling the official number printed on your bank card — never a number in the message."
+  },
+  {
+    "id": "refund",
+    "label": "Unexpected refund or payout",
+    "weight": 15,
+    "pattern": "\\b(refund|reimburse|money\\s*owed\\s*to\\s*you|unclaimed\\s*funds|tax\\s*refund|sassa\\s*(grant|payout)\\s*(update|increase))\\b",
+    "flags": "i",
+    "why": "Unexpected 'refunds' are bait to get your banking details. Ignore and delete."
+  },
+  {
+    "id": "job",
+    "label": "Too-good-to-be-true job or investment",
+    "weight": 20,
+    "pattern": "\\b(earn\\s*r\\s?\\d[\\d\\s,]*(per\\s*(day|week)|a\\s*day)|work\\s*from\\s*home|make\\s*(money|r\\s?\\d+)\\s*(fast|daily)|guaranteed\\s*(profit|returns?)|double\\s*your\\s*money|investment\\s*opportunity)\\b",
+    "flags": "i",
+    "why": "Guaranteed high returns do not exist. If it sounds too good to be true, it is a scam."
+  },
+  {
+    "id": "payfirst",
+    "label": "Pay-first request",
+    "weight": 25,
+    "pattern": "\\b(pay|send|deposit|transfer)\\s*.{0,30}\\b(first|before|to\\s*(release|receive|unlock|activate))\\b",
+    "flags": "i",
+    "why": "Any request to pay money before receiving money is a red flag."
+  }
+]

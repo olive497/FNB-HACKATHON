@@ -83,11 +83,18 @@ export type Contact = { id: string; name: string; relation: string };
 export const DEMO_USER = { name: "Thando Mokoena", email: "thando.demo@safebank.co.za" };
 
 // Fixed demo months (Aug–Oct 2026) so seeded charts stay stable.
-const month = (m: number, day: number) => `2026-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+const month = (m: number, day: number) =>
+  `2026-${String(m).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
 export const seedIncome: Income[] = [
   { id: "i1", source: "Salary", amount: 7200, date: month(8, 1), note: "Retail salary" },
-  { id: "i2", source: "Side hustle", amount: 1850, date: month(8, 16), note: "Weekend market stall" },
+  {
+    id: "i2",
+    source: "Side hustle",
+    amount: 1850,
+    date: month(8, 16),
+    note: "Weekend market stall",
+  },
   { id: "i3", source: "Salary", amount: 7200, date: month(9, 1), note: "Retail salary" },
   { id: "i4", source: "Freelance", amount: 2600, date: month(9, 12), note: "Logo design job" },
   { id: "i5", source: "Salary", amount: 7200, date: month(10, 1), note: "Retail salary" },
@@ -113,10 +120,38 @@ export const seedExpenses: Expense[] = [
 ];
 
 export const seedGoals: Goal[] = [
-  { id: "g1", name: "Emergency Fund", category: "Emergency Fund", target: 6000, saved: 3600, targetDate: "2026-12-31" },
-  { id: "g2", name: "Sewing machine", category: "Business Equipment", target: 3500, saved: 1150, targetDate: "2027-01-31" },
-  { id: "g3", name: "Next semester books", category: "Education", target: 2000, saved: 1650, targetDate: "2026-11-30" },
-  { id: "g4", name: "December travel home", category: "Transport", target: 2400, saved: 620, targetDate: "2026-12-15" },
+  {
+    id: "g1",
+    name: "Emergency Fund",
+    category: "Emergency Fund",
+    target: 6000,
+    saved: 3600,
+    targetDate: "2026-12-31",
+  },
+  {
+    id: "g2",
+    name: "Sewing machine",
+    category: "Business Equipment",
+    target: 3500,
+    saved: 1150,
+    targetDate: "2027-01-31",
+  },
+  {
+    id: "g3",
+    name: "Next semester books",
+    category: "Education",
+    target: 2000,
+    saved: 1650,
+    targetDate: "2026-11-30",
+  },
+  {
+    id: "g4",
+    name: "December travel home",
+    category: "Transport",
+    target: 2400,
+    saved: 620,
+    targetDate: "2026-12-15",
+  },
 ];
 
 export const seedDebts: Debt[] = [
@@ -125,8 +160,20 @@ export const seedDebts: Debt[] = [
 ];
 
 export const seedRecoveryGoals: Goal[] = [
-  { id: "r1", name: "Build a 3-month emergency fund", category: "Emergency Fund", target: 18000, saved: 3600 },
-  { id: "r2", name: "Clear the clothing store account", category: "Personal Savings", target: 4200, saved: 1250 },
+  {
+    id: "r1",
+    name: "Build a 3-month emergency fund",
+    category: "Emergency Fund",
+    target: 18000,
+    saved: 3600,
+  },
+  {
+    id: "r2",
+    name: "Clear the clothing store account",
+    category: "Personal Savings",
+    target: 4200,
+    saved: 1250,
+  },
 ];
 
 /* ---------------- ScamShield rule engine (transparent, rule-based) --------------- */
@@ -144,21 +191,24 @@ export const SCAM_RULES: ScamRule[] = [
     id: "otp",
     label: "Asks for an OTP or PIN",
     weight: 35,
-    pattern: /\b(otp|one[-\s]?time\s*(pin|password|code)|pin\s*code|verification\s*code|verify\s*(your|the)\s*(account|identity))\b/i,
+    pattern:
+      /\b(otp|one[-\s]?time\s*(pin|password|code)|pin\s*code|verification\s*code|verify\s*(your|the)\s*(account|identity))\b/i,
     why: "No bank or legitimate service will ever ask you to share an OTP, PIN or password. Anyone who receives your OTP can move your money.",
   },
   {
     id: "password",
     label: "Asks for a password or login details",
     weight: 35,
-    pattern: /\b(password|passcode|login\s*(details|credentials)|username\s*and\s*password|app\s*link)\b/i,
+    pattern:
+      /\b(password|passcode|login\s*(details|credentials)|username\s*and\s*password|app\s*link)\b/i,
     why: "Sharing your login details gives scammers full access to your accounts.",
   },
   {
     id: "urgent",
     label: "Urgent payment demand",
     weight: 20,
-    pattern: /\b(urgent(ly)?|immediately|right\s*now|within\s*\d+\s*(hours|minutes)|last\s*(warning|chance)|final\s*notice|act\s*now)\b/i,
+    pattern:
+      /\b(urgent(ly)?|immediately|right\s*now|within\s*\d+\s*(hours|minutes)|last\s*(warning|chance)|final\s*notice|act\s*now)\b/i,
     why: "Pressure and urgency are classic scam tactics — they stop you from thinking clearly or checking with someone you trust.",
   },
   {
@@ -172,42 +222,48 @@ export const SCAM_RULES: ScamRule[] = [
     id: "suspension",
     label: "Account suspension threat",
     weight: 25,
-    pattern: /\b(account\s*(has\s*been|will\s*be|is)\s*(suspended|blocked|frozen|closed|locked)|suspend\s*your\s*account|unauthorised\s*(login|access|activity))\b/i,
+    pattern:
+      /\b(account\s*(has\s*been|will\s*be|is)\s*(suspended|blocked|frozen|closed|locked)|suspend\s*your\s*account|unauthorised\s*(login|access|activity))\b/i,
     why: "Banks do not close accounts by SMS and never ask you to 'confirm' details to stop a suspension. Contact your bank using the number on your card.",
   },
   {
     id: "prize",
     label: "Prize or lottery win",
     weight: 25,
-    pattern: /\b(congratulations|you('ve| have)?\s*(won|been\s*selected)|prize|lotto|lottery|lucky\s*draw|cash\s*giveaway|claim\s*your)\b/i,
+    pattern:
+      /\b(congratulations|you('ve| have)?\s*(won|been\s*selected)|prize|lotto|lottery|lucky\s*draw|cash\s*giveaway|claim\s*your)\b/i,
     why: "If you never entered, you cannot win. A 'fee' to release a prize is always a scam.",
   },
   {
     id: "bank",
     label: "Bank impersonation language",
     weight: 20,
-    pattern: /\b(fnb|first\s*national\s*bank|capitec|absa|standard\s*bank|nedbank|african\s*bank|tymebank|discover\s*bank|sassa)\b.{0,40}\b(confirm|verify|update|reactivate|blocked|payment)\b/is,
+    pattern:
+      /\b(fnb|first\s*national\s*bank|capitec|absa|standard\s*bank|nedbank|african\s*bank|tymebank|discover\s*bank|sassa)\b.{0,40}\b(confirm|verify|update|reactivate|blocked|payment)\b/is,
     why: "Scammers imitate real bank names. Verify by calling the official number printed on your bank card — never a number in the message.",
   },
   {
     id: "refund",
     label: "Unexpected refund or payout",
     weight: 15,
-    pattern: /\b(refund|reimburse|money\s*owed\s*to\s*you|unclaimed\s*funds|tax\s*refund|sassa\s*(grant|payout)\s*(update|increase))\b/i,
+    pattern:
+      /\b(refund|reimburse|money\s*owed\s*to\s*you|unclaimed\s*funds|tax\s*refund|sassa\s*(grant|payout)\s*(update|increase))\b/i,
     why: "Unexpected 'refunds' are bait to get your banking details. Ignore and delete.",
   },
   {
     id: "job",
     label: "Too-good-to-be-true job or investment",
     weight: 20,
-    pattern: /\b(earn\s*r\s?\d[\d\s,]*(per\s*(day|week)|a\s*day)|work\s*from\s*home|make\s*(money|r\s?\d+)\s*(fast|daily)|guaranteed\s*(profit|returns?)|double\s*your\s*money|investment\s*opportunity)\b/i,
+    pattern:
+      /\b(earn\s*r\s?\d[\d\s,]*(per\s*(day|week)|a\s*day)|work\s*from\s*home|make\s*(money|r\s?\d+)\s*(fast|daily)|guaranteed\s*(profit|returns?)|double\s*your\s*money|investment\s*opportunity)\b/i,
     why: "Guaranteed high returns do not exist. If it sounds too good to be true, it is a scam.",
   },
   {
     id: "payfirst",
     label: "Pay-first request",
     weight: 25,
-    pattern: /\b(pay|send|deposit|transfer)\s*.{0,30}\b(first|before|to\s*(release|receive|unlock|activate))\b/i,
+    pattern:
+      /\b(pay|send|deposit|transfer)\s*.{0,30}\b(first|before|to\s*(release|receive|unlock|activate))\b/i,
     why: "Any request to pay money before receiving money is a red flag.",
   },
 ];
@@ -298,7 +354,8 @@ export const SCAM_QUIZ = [
       "Reply asking if they are really the bank",
     ],
     answer: 1,
-    explain: "Anyone with your OTP can move your money. Banks never ask for it by message or phone.",
+    explain:
+      "Anyone with your OTP can move your money. Banks never ask for it by message or phone.",
   },
   {
     q: "A WhatsApp job ad offers R4,500 per day, but you must pay a R250 'registration fee' first. This is…",
@@ -372,9 +429,14 @@ export const LESSONS: Lesson[] = [
       },
       {
         q: "In a good month, the extra money above your base budget should first go to…",
-        options: ["Treats and celebrations", "Savings and debt payments you planned in advance", "New clothes"],
+        options: [
+          "Treats and celebrations",
+          "Savings and debt payments you planned in advance",
+          "New clothes",
+        ],
         answer: 1,
-        explain: "Deciding in advance where extra money goes is what turns a good month into a safer future.",
+        explain:
+          "Deciding in advance where extra money goes is what turns a good month into a safer future.",
       },
     ],
   },
@@ -412,7 +474,8 @@ export const LESSONS: Lesson[] = [
           "Waiting for a bonus",
         ],
         answer: 1,
-        explain: "A fixed share of every payment — even small ones — builds the habit and the fund.",
+        explain:
+          "A fixed share of every payment — even small ones — builds the habit and the fund.",
       },
     ],
   },
@@ -438,15 +501,24 @@ export const LESSONS: Lesson[] = [
     quiz: [
       {
         q: "Borrowing R1,000 at 20% interest means you will repay…",
-        options: ["Exactly R1,000", "More than R1,000 — interest plus possible fees", "Less than R1,000"],
+        options: [
+          "Exactly R1,000",
+          "More than R1,000 — interest plus possible fees",
+          "Less than R1,000",
+        ],
         answer: 1,
         explain: "Interest and fees are the cost of borrowing; quick repayment keeps them low.",
       },
       {
         q: "A lender offers you a loan without checking your income or expenses. This is…",
-        options: ["Convenient — take it", "A warning sign — responsible lenders must check affordability", "Normal practice"],
+        options: [
+          "Convenient — take it",
+          "A warning sign — responsible lenders must check affordability",
+          "Normal practice",
+        ],
         answer: 1,
-        explain: "The National Credit Act requires affordability checks. Lenders that skip them are dangerous.",
+        explain:
+          "The National Credit Act requires affordability checks. Lenders that skip them are dangerous.",
       },
     ],
   },
@@ -478,7 +550,8 @@ export const LESSONS: Lesson[] = [
           "A family member lending you money with a written agreement",
         ],
         answer: 1,
-        explain: "Controlling or taking your money without agreement is financial control — a form of abuse.",
+        explain:
+          "Controlling or taking your money without agreement is financial control — a form of abuse.",
       },
       {
         q: "SafeBank's Financial Safety tools…",
@@ -488,7 +561,8 @@ export const LESSONS: Lesson[] = [
           "Require you to describe your situation in detail",
         ],
         answer: 1,
-        explain: "The tools are private by design — no disclosures required, nothing stored or shared automatically.",
+        explain:
+          "The tools are private by design — no disclosures required, nothing stored or shared automatically.",
       },
     ],
   },
@@ -517,27 +591,105 @@ export type SupportEntry = {
 };
 
 export const SAMPLE_SUPPORT: SupportEntry[] = [
-  { id: "s1", name: "Sample Community Money Advice Centre", category: "Financial guidance", region: "Johannesburg, Gauteng", contact: "0800 000 001 (sample)", hours: "Mon–Fri 08:00–16:00", verified: "Sample entry — not verified" },
-  { id: "s2", name: "Sample GBV Support Command Centre", category: "GBV support", region: "National", contact: "0800 000 002 (sample)", hours: "24 hours", verified: "Sample entry — not verified" },
-  { id: "s3", name: "Sample Legal Aid Advice Office", category: "Legal assistance", region: "Durban, KwaZulu-Natal", contact: "0800 000 003 (sample)", hours: "Mon–Fri 09:00–17:00", verified: "Sample entry — not verified" },
-  { id: "s4", name: "Sample Counselling Helpline", category: "Counselling", region: "National", contact: "0800 000 004 (sample)", hours: "Daily 07:00–22:00", verified: "Sample entry — not verified" },
-  { id: "s5", name: "Sample Youth Employment Hub", category: "Employment support", region: "Cape Town, Western Cape", contact: "0800 000 005 (sample)", hours: "Mon–Fri 08:30–16:30", verified: "Sample entry — not verified" },
-  { id: "s6", name: "Sample Skills & Training College", category: "Skills development", region: "Polokwane, Limpopo", contact: "0800 000 006 (sample)", hours: "Mon–Fri 08:00–17:00", verified: "Sample entry — not verified" },
-  { id: "s7", name: "Sample Community Upliftment Forum", category: "Community organisations", region: "Gqeberha, Eastern Cape", contact: "0800 000 007 (sample)", hours: "Weekdays 09:00–15:00", verified: "Sample entry — not verified" },
-  { id: "s8", name: "Sample Debt Counselling Helpline", category: "Financial guidance", region: "National", contact: "0800 000 008 (sample)", hours: "Mon–Sat 08:00–18:00", verified: "Sample entry — not verified" },
+  {
+    id: "s1",
+    name: "Sample Community Money Advice Centre",
+    category: "Financial guidance",
+    region: "Johannesburg, Gauteng",
+    contact: "0800 000 001 (sample)",
+    hours: "Mon–Fri 08:00–16:00",
+    verified: "Sample entry — not verified",
+  },
+  {
+    id: "s2",
+    name: "Sample GBV Support Command Centre",
+    category: "GBV support",
+    region: "National",
+    contact: "0800 000 002 (sample)",
+    hours: "24 hours",
+    verified: "Sample entry — not verified",
+  },
+  {
+    id: "s3",
+    name: "Sample Legal Aid Advice Office",
+    category: "Legal assistance",
+    region: "Durban, KwaZulu-Natal",
+    contact: "0800 000 003 (sample)",
+    hours: "Mon–Fri 09:00–17:00",
+    verified: "Sample entry — not verified",
+  },
+  {
+    id: "s4",
+    name: "Sample Counselling Helpline",
+    category: "Counselling",
+    region: "National",
+    contact: "0800 000 004 (sample)",
+    hours: "Daily 07:00–22:00",
+    verified: "Sample entry — not verified",
+  },
+  {
+    id: "s5",
+    name: "Sample Youth Employment Hub",
+    category: "Employment support",
+    region: "Cape Town, Western Cape",
+    contact: "0800 000 005 (sample)",
+    hours: "Mon–Fri 08:30–16:30",
+    verified: "Sample entry — not verified",
+  },
+  {
+    id: "s6",
+    name: "Sample Skills & Training College",
+    category: "Skills development",
+    region: "Polokwane, Limpopo",
+    contact: "0800 000 006 (sample)",
+    hours: "Mon–Fri 08:00–17:00",
+    verified: "Sample entry — not verified",
+  },
+  {
+    id: "s7",
+    name: "Sample Community Upliftment Forum",
+    category: "Community organisations",
+    region: "Gqeberha, Eastern Cape",
+    contact: "0800 000 007 (sample)",
+    hours: "Weekdays 09:00–15:00",
+    verified: "Sample entry — not verified",
+  },
+  {
+    id: "s8",
+    name: "Sample Debt Counselling Helpline",
+    category: "Financial guidance",
+    region: "National",
+    contact: "0800 000 008 (sample)",
+    hours: "Mon–Sat 08:00–18:00",
+    verified: "Sample entry — not verified",
+  },
 ];
 
 export const RECOVERY_RESOURCES = [
-  { title: "Free budgeting help", body: "Sample listing: community money advice centres help you restructure spending for free." },
-  { title: "Learn a skill", body: "Sample listing: local TVET colleges and skills centres offer short courses, some funded." },
-  { title: "Work readiness", body: "Sample listing: youth employment hubs help with CVs, interviews and job placement." },
-  { title: "Know your rights", body: "Sample listing: advice offices explain credit rights, garnishee orders and ccma processes." },
+  {
+    title: "Free budgeting help",
+    body: "Sample listing: community money advice centres help you restructure spending for free.",
+  },
+  {
+    title: "Learn a skill",
+    body: "Sample listing: local TVET colleges and skills centres offer short courses, some funded.",
+  },
+  {
+    title: "Work readiness",
+    body: "Sample listing: youth employment hubs help with CVs, interviews and job placement.",
+  },
+  {
+    title: "Know your rights",
+    body: "Sample listing: advice offices explain credit rights, garnishee orders and ccma processes.",
+  },
 ];
 
 /* Insights copy used on the Overview page */
 export const INSIGHT_COPY = {
-  transportUp: (pct: number) => `You've spent ${pct}% more on transport this month than last month.`,
+  transportUp: (pct: number) =>
+    `You've spent ${pct}% more on transport this month than last month.`,
   savingsGoal: (pct: number) => `Your emergency savings goal is ${pct}% complete.`,
   foodReview: "Consider reviewing your food budget before adding extra savings.",
-  disclaimer: "Insights are simple calculations based on your demo data — not predictions from an AI model.",
+  disclaimer:
+    "Insights are simple calculations based on your demo data — not predictions from an AI model.",
 };

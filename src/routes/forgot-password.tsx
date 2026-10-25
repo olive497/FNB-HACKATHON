@@ -7,7 +7,10 @@ export const Route = createFileRoute("/forgot-password")({
   head: () => ({
     meta: [
       { title: "Reset Password — SafeBank" },
-      { name: "description", content: "Reset your SafeBank demo password. Prototype with simulated data." },
+      {
+        name: "description",
+        content: "Reset your SafeBank demo password. Prototype with simulated data.",
+      },
       { property: "og:title", content: "Reset Password — SafeBank" },
       { property: "og:description", content: "Reset your SafeBank demo password." },
       { property: "og:type", content: "website" },
@@ -35,7 +38,10 @@ function ForgotPassword() {
   return (
     <div className="flex min-h-screen items-center justify-center px-4">
       <div className="w-full max-w-md">
-        <Link to="/login" className="mb-8 flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground">
+        <Link
+          to="/login"
+          className="mb-8 flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground"
+        >
           <ArrowLeft className="h-4 w-4" /> Back to log in
         </Link>
         <div className="card-surface p-8">
@@ -48,8 +54,8 @@ function ForgotPassword() {
                 <MailCheck className="h-6 w-6 text-primary" /> Check your email
               </h1>
               <p className="mt-2 text-sm text-muted-foreground">
-                If an account exists for <span className="font-semibold">{email}</span>, a demo reset
-                link has been sent. In this prototype no real email is delivered.
+                If an account exists for <span className="font-semibold">{email}</span>, a demo
+                reset link has been sent. In this prototype no real email is delivered.
               </p>
               <Link to="/login" className="mt-6 block">
                 <Button className="w-full">Back to Log In</Button>

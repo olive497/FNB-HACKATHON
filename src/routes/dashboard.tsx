@@ -7,7 +7,11 @@ export const Route = createFileRoute("/dashboard")({
   head: () => ({
     meta: [
       { title: "Dashboard — SafeBank" },
-      { name: "description", content: "Your SafeBank demo dashboard: budgeting, savings, scam protection, learning and financial safety tools." },
+      {
+        name: "description",
+        content:
+          "Your SafeBank demo dashboard: budgeting, savings, scam protection, learning and financial safety tools.",
+      },
       { property: "og:title", content: "Dashboard — SafeBank" },
       { property: "og:description", content: "Your SafeBank demo dashboard by Team Finovators." },
       { property: "og:type", content: "website" },

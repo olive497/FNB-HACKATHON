@@ -1,0 +1,111 @@
+{
+  "categories": [
+    "Financial guidance",
+    "GBV support",
+    "Legal assistance",
+    "Counselling",
+    "Employment support",
+    "Skills development",
+    "Community organisations"
+  ],
+  "entries": [
+    {
+      "id": "s1",
+      "name": "Sample Community Money Advice Centre",
+      "category": "Financial guidance",
+      "region": "Johannesburg, Gauteng",
+      "contact": "0800 000 001 (sample)",
+      "hours": "Mon–Fri 08:00–16:00",
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
+    },
+    {
+      "id": "s2",
+      "name": "GBV Command Centre (national)",
+      "category": "GBV support",
+      "region": "National",
+      "contact": "0800 428 428",
+      "hours": "24 hours",
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
+    },
+    {
+      "id": "s3",
+      "name": "Legal Aid South Africa",
+      "category": "Legal assistance",
+      "region": "National",
+      "contact": "0800 110 110",
+      "hours": "Mon-Fri 08:00-16:30",
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
+    },
+    {
+      "id": "s4",
+      "name": "SADAG Suicide Crisis Line",
+      "category": "Counselling",
+      "region": "National",
+      "contact": "0800 567 567",
+      "hours": "24 hours",
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
+    },
+    {
+      "id": "s5",
+      "name": "Sample Youth Employment Hub",
+      "category": "Employment support",
+      "region": "Cape Town, Western Cape",
+      "contact": "0800 000 005 (sample)",
+      "hours": "Mon–Fri 08:30–16:30",
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
+    },
+    {
+      "id": "s6",
+      "name": "Sample Skills & Training College",
+      "category": "Skills development",
+      "region": "Polokwane, Limpopo",
+      "contact": "0800 000 006 (sample)",
+      "hours": "Mon–Fri 08:00–17:00",
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
+    },
+    {
+      "id": "s7",
+      "name": "Sample Community Upliftment Forum",
+      "category": "Community organisations",
+      "region": "Gqeberha, Eastern Cape",
+      "contact": "0800 000 007 (sample)",
+      "hours": "Weekdays 09:00–15:00",
+      "verified": "Unverified - do not present as a service",
+      "lastChecked": "2026-10-24"
+    },
+    {
+      "id": "s8",
+      "name": "National Debt Mediation Association",
+      "category": "Financial guidance",
+      "region": "National",
+      "contact": "0861 627 627",
+      "hours": "Mon-Fri 08:00-16:30",
+      "verified": "Verified 2026-10-24",
+      "lastChecked": "2026-10-24"
+    }
+  ],
+  "recoveryResources": [
+    {
+      "title": "Free budgeting help",
+      "body": "Sample listing: community money advice centres help you restructure spending for free."
+    },
+    {
+      "title": "Learn a skill",
+      "body": "Sample listing: local TVET colleges and skills centres offer short courses, some funded."
+    },
+    {
+      "title": "Work readiness",
+      "body": "Sample listing: youth employment hubs help with CVs, interviews and job placement."
+    },
+    {
+      "title": "Know your rights",
+      "body": "Sample listing: advice offices explain credit rights, garnishee orders and ccma processes."
+    }
+  ]
+}
