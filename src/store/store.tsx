@@ -37,6 +37,8 @@ type Persisted = {
   theme: Theme;
   authed: boolean;
   onboarded: boolean;
+  incomeType: string;
+  financialGoals: string[];
   user: User;
   prefs: Prefs;
   income: Income[];
@@ -52,6 +54,8 @@ const defaults: Persisted = {
   theme: "light",
   authed: false,
   onboarded: false,
+  incomeType: "",
+  financialGoals: [],
   user: null,
   prefs: {
     language: "en",

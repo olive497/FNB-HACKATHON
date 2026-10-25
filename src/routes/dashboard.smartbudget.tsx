@@ -15,6 +15,12 @@ import { EXPENSE_CATEGORIES, INCOME_SOURCES, type Expense, type Income } from "@
 import { formatDate, formatZAR, parseAmount, todayISO } from "@/lib/format";
 import { useHydrated } from "@/lib/use-hydrated";
 import { useSafeBank } from "@/store/store";
+import {
+  filterByMonth,
+  calculateMonthlyTotals,
+  calculateWeeklyIncome,
+} from "@/lib/budget-calculations";
+import { calculateBudgetForecast } from "@/lib/budget-forecast";
 
 export const Route = createFileRoute("/dashboard/smartbudget")({
   head: () => ({
@@ -63,7 +69,34 @@ type ExpenseForm = { category: string; amount: string; date: string; note: strin
 function SmartBudget() {
   const store = useSafeBank();
   const hydrated = useHydrated();
+
+  // The month currently being viewed (YYYY-MM)
+  const [selectedMonth, setSelectedMonth] = useState(
+    () => todayISO().slice(0, 7)
+  );
   const [irregularMode, setIrregularMode] = useSticky("safebank-irregular", false);
+  const hasIrregularIncome =
+  store.incomeType === "Irregular income" ||
+  store.incomeType === "Freelance / self-employed" ||
+  store.incomeType === "Weekly income";
+const [modeInitialized, setModeInitialized] = useSticky(
+  "safebank-irregular-initialized",
+  false
+);
+
+useEffect(() => {
+  if (!store.loaded || modeInitialized || !store.onboarded) return;
+
+  setIrregularMode(hasIrregularIncome);
+  setModeInitialized(true);
+}, [
+  store.loaded,
+  store.onboarded,
+  hasIrregularIncome,
+  modeInitialized,
+  setIrregularMode,
+  setModeInitialized,
+]);
   const [limits, setLimits] = useSticky<Record<string, number>>("safebank-limits", { Transport: 800, Food: 2000 });
   const [plannedSavings, setPlannedSavings] = useSticky("safebank-planned-savings", 600);
 
@@ -73,19 +106,46 @@ function SmartBudget() {
   const [expenseForm, setExpenseForm] = useState<ExpenseForm>({ category: EXPENSE_CATEGORIES[1], amount: "", date: todayISO(), note: "" });
   const [formError, setFormError] = useState("");
 
-  const totals = useMemo(() => {
-    const income = store.income.reduce((a, i) => a + i.amount, 0);
-    const expenses = store.expenses.reduce((a, e) => a + e.amount, 0);
-    return { income, expenses };
-  }, [store.income, store.expenses]);
+  // Only include transactions from the selected month
 
-  const remaining = totals.income - totals.expenses - plannedSavings;
+const monthlyIncome = useMemo(
+  () => filterByMonth(store.income, selectedMonth),
+  [store.income, selectedMonth]
+);
 
-  const categoryTotals = useMemo(() => {
-    const map = new Map<string, number>();
-    for (const e of store.expenses) map.set(e.category, (map.get(e.category) ?? 0) + e.amount);
-    return map;
-  }, [store.expenses]);
+const monthlyExpenses = useMemo(
+  () => filterByMonth(store.expenses, selectedMonth),
+  [store.expenses, selectedMonth]
+);
+
+const totals = useMemo(
+  () => calculateMonthlyTotals(store.income, store.expenses, selectedMonth),
+  [store.income, store.expenses, selectedMonth]
+);
+
+const remaining = totals.income - totals.expenses - plannedSavings;
+const forecast = useMemo(
+  () => calculateBudgetForecast(
+    store.income,
+    store.expenses,
+    selectedMonth
+  ),
+  [store.income, store.expenses, selectedMonth]
+);
+
+
+const categoryTotals = useMemo(() => {
+  const map = new Map<string, number>();
+
+  for (const expense of monthlyExpenses) {
+    map.set(
+      expense.category,
+      (map.get(expense.category) ?? 0) + expense.amount
+    );
+  }
+
+  return map;
+}, [monthlyExpenses]);
 
   const alerts = useMemo(() => {
     const list: { tone: "danger" | "warning"; text: string }[] = [];
@@ -100,7 +160,7 @@ function SmartBudget() {
       list.push({ tone: "warning", text: `Your planned savings of ${formatZAR(plannedSavings)} may leave insufficient funds for essential expenses.` });
     return list;
   }, [totals, limits, categoryTotals, remaining, plannedSavings]);
-
+  
   // Irregular income helpers
   const monthIncome = useMemo(() => {
     const map = new Map<string, number>();
@@ -112,23 +172,34 @@ function SmartBudget() {
   }, [store.income]);
 
   const weeklySummaries = useMemo(() => {
-    const byWeek = new Map<number, { total: number; dates: string[] }>();
-    for (const i of store.income) {
-      const d = new Date(i.date + "T00:00:00");
-      const week = Math.floor((d.getDate() - 1) / 7) + 1;
-      const cur = byWeek.get(week) ?? { total: 0, dates: [] };
-      cur.total += i.amount;
-      cur.dates.push(i.date);
-      byWeek.set(week, cur);
-    }
-    return [...byWeek.entries()]
-      .sort((a, b) => a[0] - b[0])
-      .map(([week, v]) => ({
-        label: `Week ${week}`,
-        days: `${(week - 1) * 7 + 1}–${Math.min(week * 7, 31)}`,
-        total: v.total,
-      }));
-  }, [store.income]);
+  const byWeek = new Map<number, number>();
+
+  for (const income of monthlyIncome) {
+    const day = Number(income.date.slice(8, 10));
+    const week = Math.floor((day - 1) / 7) + 1;
+
+    byWeek.set(
+      week,
+      (byWeek.get(week) ?? 0) + income.amount
+    );
+  }
+
+  const daysInMonth = new Date(
+    Number(selectedMonth.slice(0, 4)),
+    Number(selectedMonth.slice(5, 7)),
+    0
+  ).getDate();
+
+  return Array.from({ length: Math.ceil(daysInMonth / 7) }, (_, index) => {
+    const week = index + 1;
+
+    return {
+      label: `Week ${week}`,
+      days: `${index * 7 + 1}–${Math.min(week * 7, daysInMonth)}`,
+      total: byWeek.get(week) ?? 0,
+    };
+  });
+}, [monthlyIncome, selectedMonth]);
 
   const trendData = useMemo(
     () =>
@@ -193,10 +264,40 @@ function SmartBudget() {
           <h2 className="text-xl font-bold tracking-tight">SmartBudget</h2>
           <p className="text-sm text-muted-foreground">Budgeting built for irregular incomes. All figures are simulated demo data.</p>
         </div>
-        <div className="flex items-center gap-2.5 rounded-xl border border-border bg-card px-3.5 py-2">
-          <Switch checked={irregularMode} onCheckedChange={setIrregularMode} label="Irregular income mode" />
-          <span className="text-sm font-semibold">Irregular Income Mode</span>
-        </div>
+       <div className="flex flex-wrap items-center gap-3">
+  {/* Month selector */}
+  <div className="flex items-center gap-2 rounded-xl border border-border bg-card px-3 py-2">
+    <CalendarDays className="h-4 w-4 text-primary" />
+
+    <label
+      htmlFor="budget-month"
+      className="text-sm font-semibold"
+    >
+      Month
+    </label>
+
+    <input
+      id="budget-month"
+      type="month"
+      value={selectedMonth}
+      onChange={(e) => setSelectedMonth(e.target.value)}
+      className="rounded-md border border-border bg-background px-2 py-1 text-sm"
+      aria-label="Select budget month"
+    />
+  </div>
+
+  {/* Irregular income switch */}
+  <div className="flex items-center gap-2.5 rounded-xl border border-border bg-card px-3.5 py-2">
+    <Switch
+      checked={irregularMode}
+      onCheckedChange={setIrregularMode}
+      label="Irregular income mode"
+    />
+    <span className="text-sm font-semibold">
+      Irregular Income Mode
+    </span>
+  </div>
+</div>
       </div>
 
       {/* Budget alerts */}
@@ -247,6 +348,94 @@ function SmartBudget() {
         </div>
       </Card>
 
+
+      {/* SmartBudget Financial Forecast */}
+      <Card>
+        <div className="flex items-center gap-2">
+          <CardTitle>SmartBudget Financial Forecast</CardTitle>
+        </div>
+
+        
+<p className="mt-2 text-sm text-muted-foreground">
+  Your estimated financial position for
+  {` ${new Date(
+    Number(selectedMonth.slice(0, 4)),
+    Number(selectedMonth.slice(5, 7)),
+    1
+  ).toLocaleDateString("en-ZA", {
+    month: "long",
+    year: "numeric",
+  })}`}.
+</p>
+
+
+        {forecast ? (
+          <div className="mt-4 space-y-4">
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                {
+                  label: "Estimated Next-Month Income",
+                  value: forecast.estimatedIncome,
+                },
+                {
+                  label: "Estimated Next-Month Expenses",
+                  value: forecast.estimatedExpenses,
+                },
+                {
+                  label: "Projected Balance",
+                  value: forecast.projectedBalance,
+                },
+                {
+                  label: "Conservative Income Estimate",
+                  value: forecast.conservativeIncome,
+                },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="rounded-xl bg-muted p-4"
+                >
+                  <p className="text-xs text-muted-foreground">
+                    {item.label}
+                  </p>
+                  <p className="mt-1 text-xl font-bold">
+                    {formatZAR(item.value)}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="rounded-xl border border-border p-4">
+              <p className="font-semibold">
+                SafeBank Financial Insight
+              </p>
+
+              <p className="mt-2 text-sm text-muted-foreground">
+                {forecast.conservativeBalance < 0
+                  ? "Your lower-income scenario may not cover expected expenses. Consider reducing non-essential spending and building an emergency buffer."
+                  : forecast.riskLevel === "moderate"
+                    ? "Your income varies across recent months. Consider planning essential expenses around your lowest recent income."
+                    : "Your recent income and expenses suggest a manageable budget. Continue tracking spending and saving consistently."}
+              </p>
+            </div>
+
+            <p className="text-xs text-muted-foreground">
+              Forecasts use historical transactions and are
+              estimates, not guaranteed financial outcomes.
+            </p>
+          </div>
+        ) : (
+          <div className="mt-4 rounded-xl bg-muted p-4">
+            <p className="font-semibold">
+              More transaction history needed
+            </p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Record income and expenses for three consecutive
+              months to unlock your forecast.
+            </p>
+          </div>
+        )}
+      </Card>
+
       {/* Income tracker */}
       <Card>
         <div className="flex items-center justify-between gap-3">
@@ -257,10 +446,10 @@ function SmartBudget() {
           <Button size="sm" onClick={() => openIncome()}><Plus className="h-4 w-4" /> Add Income</Button>
         </div>
         <div className="mt-4 divide-y divide-border">
-          {store.income.length === 0 && (
+          {monthlyIncome.length === 0 && (
             <EmptyState icon={<Wallet className="h-8 w-8" />} title="No income yet" body="Add your first income entry to start budgeting." />
           )}
-          {[...store.income].sort((a, b) => b.date.localeCompare(a.date)).map((i) => (
+          {[...monthlyIncome].sort((a, b) => b.date.localeCompare(a.date)).map((i) => (
             <div key={i.id} className="flex items-center justify-between gap-3 py-3">
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold">{i.source}{i.note ? ` · ${i.note}` : ""}</p>
@@ -286,10 +475,10 @@ function SmartBudget() {
           <Button size="sm" variant="outline" onClick={() => openExpense()}><Plus className="h-4 w-4" /> Add Expense</Button>
         </div>
         <div className="mt-4 divide-y divide-border">
-          {store.expenses.length === 0 && (
+          {monthlyExpenses.length === 0 && (
             <EmptyState icon={<Wallet className="h-8 w-8" />} title="No expenses yet" body="Add your first expense to see your budget in action." />
           )}
-          {[...store.expenses].sort((a, b) => b.date.localeCompare(a.date)).map((e) => {
+          {[...monthlyExpenses].sort((a, b) => b.date.localeCompare(a.date)).map((e) => {
             const limit = limits[e.category] ?? 0;
             const spent = categoryTotals.get(e.category) ?? 0;
             const over = limit > 0 && spent > limit;

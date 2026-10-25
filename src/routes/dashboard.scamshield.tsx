@@ -111,7 +111,9 @@ function ScamShield() {
               <span className="flex items-center gap-2 font-extrabold">
                 <levelMeta.icon className="h-5 w-5" /> {levelMeta.label}
               </span>
-              <Badge tone={levelMeta.tone}>Risk score {result.score}/100</Badge>
+              <Badge tone={levelMeta.tone}>
+  Rule-based risk score: {result.score}/100
+</Badge>
             </div>
 
             {result.detected.length > 0 ? (
@@ -143,8 +145,13 @@ function ScamShield() {
                 <li>If it claims to be from a company, find its official contact details yourself.</li>
               </ol>
             </div>
-            <p className="mt-3 text-xs font-medium">Reminder: no legitimate organisation will ever ask you to share OTPs or passwords.</p>
-          </div>
+            <p className="mt-3 text-xs font-medium">Reminder: no legitimate organisation will ever ask you to share OTPs or passwords.</p>     
+            <p className="mt-2 text-xs text-muted-foreground">
+  ScamShield uses rule-based detection to identify common warning
+  signs. This score is not a probability of fraud, and a low
+  score does not guarantee that a message is safe.
+</p>
+             </div>
         )}
       </Card>
 

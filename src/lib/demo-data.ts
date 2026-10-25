@@ -218,19 +218,43 @@ export type ScamResult = {
   detected: { rule: ScamRule; matches: string[] }[];
 };
 
+
 export function analyseMessage(text: string): ScamResult {
   const detected: ScamResult["detected"] = [];
   let score = 0;
+
   for (const rule of SCAM_RULES) {
-    const matches = text.match(new RegExp(rule.pattern.source, "gi"));
+    const matches = text.match(
+      new RegExp(rule.pattern.source, "gi")
+    );
+
     if (matches) {
-      detected.push({ rule, matches: matches.slice(0, 3) });
+      detected.push({
+        rule,
+        matches: matches.slice(0, 3),
+      });
+
       score += rule.weight;
     }
   }
-  const level: ScamResult["level"] = score >= 50 ? "high" : score >= 20 ? "medium" : "low";
-  return { score, level, detected };
+
+  // Keep the risk score between 0 and 100
+  const finalScore = Math.max(0, Math.min(100, score));
+
+  const level: ScamResult["level"] =
+    finalScore >= 50
+      ? "high"
+      : finalScore >= 20
+        ? "medium"
+        : "low";
+
+  return {
+    score: finalScore,
+    level,
+    detected,
+  };
 }
+
 
 export const SCAM_EDUCATION = [
   {

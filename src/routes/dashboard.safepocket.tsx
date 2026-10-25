@@ -37,12 +37,28 @@ function SafePocket() {
     return { saved, target, pct: target > 0 ? Math.round((saved / target) * 100) : 0 };
   }, [store.goals]);
 
-  // Monthly income estimate for flexible suggestions
-  const monthlyIncome = useMemo(() => {
-    const key = new Date().toISOString().slice(0, 7);
-    const thisMonth = store.income.filter((i) => i.date.startsWith(key)).reduce((a, i) => a + i.amount, 0);
-    return thisMonth;
-  }, [store.income]);
+  // Calculate available money before suggesting savings
+const monthlyFinances = useMemo(() => {
+  const now = new Date();
+
+  const monthKey = `${now.getFullYear()}-${String(
+    now.getMonth() + 1
+  ).padStart(2, "0")}`;
+
+  const income = store.income
+    .filter((item) => item.date.startsWith(monthKey))
+    .reduce((total, item) => total + item.amount, 0);
+
+  const expenses = store.expenses
+    .filter((item) => item.date.startsWith(monthKey))
+    .reduce((total, item) => total + item.amount, 0);
+
+  return {
+    income,
+    expenses,
+    available: Math.max(0, income - expenses),
+  };
+}, [store.income, store.expenses]);
 
   const openGoal = (editing?: Goal) => {
     setError("");
@@ -89,7 +105,16 @@ function SafePocket() {
   const calcMonths = Math.max(1, parseAmount(calc.months) || 1);
   const perMonth = Number.isFinite(calcTarget) ? calcTarget / calcMonths : NaN;
 
-  const suggestion = monthlyIncome > 0 ? Math.max(50, Math.round((monthlyIncome * 0.1) / 10) * 10) : 100;
+  const suggestion =
+  monthlyFinances.income > 0
+    ? Math.max(
+        0,
+        Math.min(
+          Math.round(monthlyFinances.income * 0.1),
+          Math.round(monthlyFinances.available * 0.2)
+        )
+      )
+    : 0;
 
   return (
     <div className="space-y-6">
@@ -181,7 +206,23 @@ function SafePocket() {
             </div>
             <ul className="mt-3 space-y-2.5 text-sm">
               <li className="rounded-xl bg-muted p-3">
-                Based on this month's demo income, saving about <span className="font-bold">{formatZAR(suggestion)}</span> (10% of what came in) is a realistic target.
+               {suggestion > 0 ? (
+  <>
+    Based on your recorded income and expenses this month,
+    you could consider saving up to{" "}
+    <span className="font-bold">
+      {formatZAR(suggestion)}
+    </span>
+    , provided your essential expenses and upcoming bills
+    are covered.
+  </>
+) : (
+  <>
+    Your recorded finances do not currently support an
+    additional savings contribution. Focus on essential
+    expenses first and save when you have money available.
+  </>
+)}
               </li>
               <li className="rounded-xl bg-muted p-3">
                 Save irregular amounts any time — even R50 a week grows to {formatZAR(2600)} over a year.
